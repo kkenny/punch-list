@@ -1,4 +1,4 @@
-var version = "2019.07.18-1600";
+var version = "2019.07.22-1225";
 
 var config = {
   apiKey: "AIzaSyA4De5itV56yaOBfBW6Cnk3fS7skPmDCHM",
