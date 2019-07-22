@@ -562,11 +562,13 @@ function formatDate(d) {
 	d = new Date(d);
 	var minutes = d.getMinutes();
 	var hours = d.getHours();
+	var month = (d.getMonth() + 1);
 
 	if (minutes < 10) { minutes = ('0' + minutes); }
 	if (hours === 0)  { hours = ('0' + hours);     }
+	if (month < 10)   { month = ('0' + month);     }
 
-	var	s = d.getFullYear() + '/' + d.getMonth() + '/' + d.getDate() + ' ' + hours + ':' + minutes;
+	var	s = d.getFullYear() + '/' + month + '/' + d.getDate() + ' ' + hours + ':' + minutes;
 
 	return s;
 }
