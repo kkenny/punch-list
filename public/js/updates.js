@@ -9,7 +9,6 @@ function updateElementData(element, d) {
 		if ( d != e ) {
 			conLog("updating: " + element + ", with: " + d + ", was: " + e);
 			document.getElementById(element).innerHTML = d;
-			sortList();
 		} else if ( d === e ) {
 			conLog("Not Updating: " + element + ", because: " + d + " === " + e);
 		} else {
@@ -26,7 +25,7 @@ function updatePunchElement(childKey, childData) {
 
 	if (childData.progress.toLowerCase != "done") {
 		updateElementData("priority" + childKey, childData.priority);
-		$( '#' + childKey).prop("priority", childData.priority);
+		$( '#' + childKey).attr("priority", childData.priority);
 		updateElementData("subject" + childKey, childData.subject);
 		updateElementData("progress" + childKey, childData.progress);
 		updateElementData("neededby-data" + childKey, childData.needByDate);

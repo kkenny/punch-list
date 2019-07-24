@@ -1,4 +1,4 @@
-var version = "2019.07.24-1115";
+var version = "2019.07.24-1517";
 
 var logging = false;
 
@@ -20,7 +20,7 @@ function loadPunches(uid) {
 	});
 
 	mkSortable();
-	isListSorted();
+	sortList();
 }
 
 

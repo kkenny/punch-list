@@ -142,7 +142,7 @@ function isListSorted() {
 		}
 	});
 
-	conLog("Sorted: " + sorted);
+	//console.log("Sorted: " + sorted);
 
 	return sorted;
 }
@@ -168,6 +168,11 @@ function sortList() {
 		positionLoop();
 	}
 }
+
+//periodically make sure the list is sorted
+var sortTheList = setInterval(function() {
+	sortList();
+}, 3000);
 
 // Make details available
 function enableDetail(){
