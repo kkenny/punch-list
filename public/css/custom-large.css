@@ -1,9 +1,9 @@
 /* Larger than tablet */
 @media (min-width: 750px) {
-.progress-wrapper { width: 20%; float:left; text-align:left;}
+.progress-wrapper { width: 15%; float:left; text-align:left;}
 #neededBy { display: block; }
 #whoami { width: 100%; }
-.needby-container { width: 22%; float: left; text-align: center; }
+.needby-container { width: 22%; text-align: center; }
 .tags-summary { display: block; font-size: 1em; margin-left: 10px; }
 a.tags-summary { color: #00BFFF; text-decoration: none; float:left;}
 a.tags-summary:hover { color: #00FFFF; text-shadow: 0px 0px 23px #FFF; }

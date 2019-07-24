@@ -1,0 +1,77 @@
+
+function genPunchListItem(elementData, element) {
+	$( elementData ).appendTo( element );
+}
+
+
+function addPunchElement(childKey, childData) {
+
+	if (childData.progress.toLowerCase() === "in progress") { var style = "inProgress"; }
+	else if (childData.progress.toLowerCase() === "waiting") { var style = "waiting"; }
+	else if (childData.progress.toLowerCase() === "new") { var style = "punch-default"; }
+	else { style = "punch-default"; }
+
+	if (childData.progress.toLowerCase() != "done") {
+		genPunchListItem('<li id="' + childKey + '" priority=' + childData.priority + ' class="' + style + '"></li>', '#sortable');
+		genPunchListItem('<div id="div-portlet' + childKey + '" class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>', '#' + childKey);
+		genPunchListItem('<div id="priority-container' + childKey + '" class="priority-container"></div>', '#div-portlet' + childKey);
+		genPunchListItem('<div id="details-container' + childKey + '" class="container details-container"></div>', '#div-portlet' + childKey);
+		genPunchListItem('<div id="priority' + childKey + '" class="twelve columns priority">' + childData.priority + '</div>', '#priority-container' + childKey);
+		genPunchListItem('<div id="subject' + childKey + '" class="subject">' + childData.subject + '</div><div id="detail-link' + childKey + '" class="two columns u-pull-right"><a style="margin-left: 10px;" class="punch-default u-pull-right" href="#" onclick=toggleElement(\'backlog-list-content' + childKey + '\')>details</a></div>', '#details-container' + childKey);
+		genPunchListItem('<div id="details-col-one' + childKey + '" class="progress-wrapper"></div>', '#details-container' + childKey);
+		genPunchListItem('<div id="progress' + childKey +'" class="twelve columns ' + style + '">' + childData.progress + '</div>', '#details-col-one' + childKey);
+		genPunchListItem('<div class="twelve columns punch-default" style="color: lime" id="timer' + childKey + '"></div>', '#details-col-one' + childKey);
+		// status dropdown
+		genPunchListItem('<div id="dropdown-wrapper' + childKey + '" class="dropdown"></div>', '#details-container' + childKey);
+		genPunchListItem('<img class="top dropbtn" onclick=progressMenuDrop("' + childKey + '") src="images/down-carrot.png">', '#dropdown-wrapper' + childKey);
+		genPunchListItem('<div id="progressDropdown' + childKey + '" class="dropdown-content punch-default"></div>', '#dropdown-wrapper' + childKey);
+		genPunchListItem('<a href="#" onClick=\'setPunchProgress("' + childKey + '", "new")\'>New</a>', '#progressDropdown' + childKey);
+		genPunchListItem('<a href="#" onClick=\'setPunchProgress("' + childKey + '", "in progress")\'>Start</a>', '#progressDropdown' + childKey);
+		genPunchListItem('<a href="#" onClick=\'setPunchProgress("' + childKey + '", "waiting")\'>Waiting</a>', '#progressDropdown' + childKey);
+		genPunchListItem('<a href="#" onClick=\'setPunchProgress("' + childKey + '", "done")\'>Finish</a>', '#progressDropdown' + childKey);
+
+		genPunchListItem('<div id="details-col-three' + childKey + '" class="needby-container punch-default"></div>', '#details-container' + childKey);
+		genPunchListItem('<div id="details-col-five' + childKey + '" class="five columns punch-default"></div>', '#details-container' + childKey);
+		if ( childData.needByDate != null && childData.needByDate != undefined && childData.needByDate != '' ) {
+			genPunchListItem('<div id="neededBy' + childKey + '" class="twelve columns punch-default"></div>', '#details-col-three' + childKey);
+			genPunchListItem('<div id="needby-data' + childKey + '">' + formatDate(childData.needByDate) + '</div>', '#neededBy' + childKey);
+			genPunchListItem('<div id="needby-date-timer' + childKey + '"></div>', '#neededBy' + childKey);
+			createTimer('needby-date-timer' + childKey, childData.needByDate);
+			genPunchListItem('<div id="countdown-' + childKey + '" class="twelve columns punch-default"></div>', '#details-col-three' + childKey);
+
+			if ( (new Date(childData.needByDate).getTime() - new Date().getTime()) <= 0 ) {
+					$( '#needby-data' + childKey ).addClass( "overdue" );
+			} else if ( ((new Date(childData.needByDate).getTime() - new Date().getTime()) / 1000) <= 259200 ) {
+					$( '#needby-data' + childKey ).addClass( "duesoon" );
+			}
+		} else {
+			genPunchListItem('<div>&nbsp;</div>', '#details-col-three' + childKey);
+		}
+
+		genPunchListItem('<div id="backlog-list-content' + childKey + '" class="backlog-list-content details-container"><div id="punch-list-backlog-details' + childKey + '" class="punch-list-backlog-details"></div></div>', '#div-portlet' + childKey) ;
+		if ( childData.startTime != undefined ) {
+			genPunchListItem('<div id="startTime" class="three columns punch-default started">' + formatDate(childData.startTime) + '</div>', '#punch-list-backlog-details' + childKey);
+			var time = new Date(childData.startTime).getTime();
+			createTimer("timer" + childKey, time);
+		}
+		if ( childData.tags != undefined ) {
+			var tags = childData.tags;
+			genPunchListItem('<div id="tags-container-summary' + childKey + '" class="twelve columns"></div>', '#details-col-five' + childKey);
+			genPunchListItem('<div id="tags-container' + childKey + '" class="twelve columns"></div>', '#punch-list-backlog-details' + childKey);
+			genPunchListItem('<div class="two columns tags-details">Tags: </div>', '#tags-container' + childKey);
+			genPunchListItem('<div id="tags-column' + childKey + '" class="nine columns tags-details"></div>', '#tags-container' + childKey);
+			var i;
+			for (i=0; i<tags.length; i++) {
+				tagData = tags[i];
+				if ((tags.length - 1) === i) { var comma = ' '; }
+				else { var comma = ','; }
+				genPunchListItem('<a id="tags-summary-' + tagData + childKey + '" class="punch-default tags-summary ' + tagData +'" href="#" onClick=tagFilter("' + tagData + '")>' + tagData + comma + '</a>', '#tags-container-summary' + childKey);
+				genPunchListItem('<a id="tags-details-' + tagData + childKey + '" class="tags-details" href="#" onClick=tagFilter("' + tagData + '")>' + tagData + comma + '</a>', '#tags-column' + childKey);
+			}
+		}
+		if ( childData.notes != "" ) {
+			genPunchListItem('<textarea class="edit-text-box" readonly>' + childData.notes + '</textarea><br />', '#punch-list-backlog-details' + childKey);
+		}
+		genPunchListItem('<button class="button" onClick=editPunch("' + childKey + '")>edit</button>', '#punch-list-backlog-details' + childKey);
+	}
+}
