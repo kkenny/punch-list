@@ -41,16 +41,28 @@ function submitEditPunch(uuid) {
 
 //	var uuid = document.getElementById("editID").value;
 	var subjectField = document.getElementById("editSubject").value;
-	var priorityField = parseInt(document.getElementById("editPriority").value);
+	var priorityField = document.getElementById("editPriority").value;
 	var progressField = document.getElementById("editProgress").innerHTML;
 	var nDateField = document.getElementById("timepickerEdit").value;
+	var notesField = document.getElementById("editNotes").value;
+
+	if ( nDateField === 'date' || nDateField === 'Invalid Date' ) {
+		nDateField = '';
+	}
+
+	if ( priorityField == null || priorityField === '' || priorityField === 'priority' ) {
+		priorityField = 99;
+	}
 
 	var tagsField = document.getElementById("editTags").value.toLowerCase();
+	if ( tagsField === 'tag1,tag2, tag3' ) {
+		tagsField = '';
+	}
+
 	var stripLeadingSpace = tagsField.replace(/, /g, ',');
 	var noSpaces = stripLeadingSpace.replace(/ /g, '_');
 	var tagField = noSpaces.split(",");
 
-	var notesField = document.getElementById("editNotes").value;
 
 	var punchData = {
 		subject: subjectField,
