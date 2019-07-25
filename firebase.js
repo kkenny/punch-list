@@ -1,4 +1,4 @@
-const firebaseConfig = {
+var firebaseConfig = {
   apiKey: "AIzaSyA4De5itV56yaOBfBW6Cnk3fS7skPmDCHM",
   authDomain: "punchlist-1561043639952.firebaseapp.com",
   databaseURL: "https://punchlist-1561043639952.firebaseio.com",
@@ -10,20 +10,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-
-//var defaultProject = firebase.initializeApp(firebaseConfig);
-
-//console.log(defaultProject.name);
-
 var database = firebase.database();
-
-function test() {
-	var item = database().ref('punch-items');
-//	item.orderByChild("priority")
-	console.log(item);
-}
-
-test();
 
 // AUTH //
 
