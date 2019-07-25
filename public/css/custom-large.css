@@ -1,82 +1,130 @@
 /* Larger than tablet */
 @media (min-width: 750px) {
-.progress-wrapper { width: 15%; float:left; text-align:left;}
-#neededBy { display: block; }
-#whoami { width: 100%; }
-.needby-container { width: 22%; text-align: center; }
-.tags-summary { display: block; font-size: 1em; margin-left: 10px; }
-a.tags-summary { color: #00BFFF; text-decoration: none; float:left;}
-a.tags-summary:hover { color: #00FFFF; text-shadow: 0px 0px 23px #FFF; }
-.tags-details { display: none; }
-.subject {
-	overflow: hidden;
-	width: 70%;
-  float: left;
-  color: #FFF;
-  font-size: 2rem;
-  font-weight: 900; }
-.column-left {
-	display: none;
-	margin-top: 100px;
-	margin-left: auto;
-	width: 30%;
-	height: 99%;
-	background-color: #000;
-	overflow: hidden;
-	float: left;
-	border-right: 3px solid #000;
-}
-.column-right { display: none; width: 10%; overflow: hidden; float: left;}
-.column-middle { display: block; width: 55%; overflow: visible; margin-left:auto; margin-right:auto;}
+	.progress-wrapper {
+		float:left;
+		text-align:left;
+		width: 15%;
+	}
+	#neededBy {
+		display: block;
+	}
+	#whoami {
+		width: 100%;
+	}
+	.needby-container {
+		text-align: center;
+		width: 22%;
+	}
+	.tags-summary {
+		display: block;
+		font-size: 1em;
+		margin-left: 10px;
+	}
+	a.tags-summary {
+		color: #00BFFF;
+		float:left;
+		text-decoration: none;
+	}
+	a.tags-summary:hover {
+		color: #00FFFF;
+		text-shadow: 0 0 23px #FFF;
+	}
+	.tags-details {
+		display: none;
+	}
+	.subject {
+		color: #FFF;
+		float: left;
+		font-size: 2rem;
+		font-weight: 900;
+		overflow: hidden;
+		width: 70%;
+	}
+	.column-left {
+		background-color: #000;
+		border-right: 3px solid #000;
+		display: none;
+		float: left;
+		height: 99%;
+		margin-left: auto;
+		margin-top: 100px;
+		overflow: hidden;
+		width: 30%;
+	}
+	.column-right {
+		display: none;
+		float: left;
+		overflow: hidden;
+		width: 10%;
+	}
+	.column-middle {
+		display: block;
+		margin-left:auto;
+		margin-right:auto;
+		overflow: visible;
+		width: 55%;
+	}
 /* Navbar */
-.clock-wrapper {
-  display: block;
-  min-width: 50px; }
-.clock {
-  display: block;
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #AAA;
-  padding: 5px;
-  margin-bottom: 0px; }
-.navbar,
-.navbar-spacer {
-  display: block;
-  width: 100%;
-  height: 6.5rem;
-  background: #222;
-  z-index: 99;
-  border-top: 0px solid #eee;
-  border-bottom: 1px solid #eee; }
-.navbar-spacer {
-  display: none; }
-.navbar > .container {
-  width: 100%; }
-.navbar-list {
-  list-style: none;
-  margin-bottom: 0; }
-.navbar-item {
-  position: relative;
-  float: left;
-  margin-bottom: 0; }
-.navbar-link {
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .2rem;
-  margin-right: 35px;
-  text-decoration: none;
-  line-height: 6.5rem;
-  color: #222; }
-.navbar-link.active {
-  color: #33C3F0; }
-.has-docked-nav .navbar {
-  position: fixed;
-  top: 0;
-  left: 0; }
-.has-docked-nav .navbar-spacer {
-  display: block; }
-/* Re-overiding the width 100% declaration to match size of % based container */
-.has-docked-nav .navbar > .container {
-  width: 80%; }
+	.clock-wrapper {
+		display: block;
+		min-width: 50px;
+	}
+	.clock {
+		color: #AAA;
+		display: block;
+		font-size: 1.8rem;
+		font-weight: 600;
+		margin-bottom: 0;
+		padding: 5px;
+	}
+	.navbar,
+	.navbar-spacer {
+		background: #222;
+		border-bottom: 1px solid #eee;
+		border-top: 0 solid #eee;
+		display: block;
+		height: 6.5rem;
+		width: 100%;
+		z-index: 99;
+	}
+	.navbar-spacer {
+		display: none;
+	}
+	.navbar > .container {
+		width: 100%;
+	}
+	.navbar-list {
+		list-style: none;
+		margin-bottom: 0;
+	}
+	.navbar-item {
+		float: left;
+		margin-bottom: 0;
+		position: relative;
+	}
+	.navbar-link {
+		color: #222;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: .2rem;
+		line-height: 6.5rem;
+		margin-right: 35px;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+	.active {
+		color: #33C3F0;
+	}
+	.has-docked-nav .navbar {
+		left: 0;
+		position: fixed;
+		top: 0;
+	}
+	.has-docked-nav .navbar-spacer {
+		display: block;
+	}
+	/* Re-overiding the width 100% declaration to match size of % based container */
+	.has-docked-nav .navbar > .container {
+	  width: 80%;
+	}
 }
