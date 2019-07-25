@@ -39,19 +39,34 @@ function createNewEvent() {
 	enableElement("newEvent");
 
 	var subjectField = document.getElementById("newSubject").value;
-	var priorityField = parseInt(document.getElementById("newPriority").value);
+	var priorityField = document.getElementById("newPriority").value;
 	var progressField = document.getElementById("newProgress").value;
 	var nDateField = document.getElementById("timepickerCreate").value;
 	var notesField = document.getElementById("newNotes").value;
 
-	priorityField--;
+	if ( nDateField === 'date' ) {
+		nDateField = '';
+	}
+
+	if ( priorityField == null || priorityField === '' || priorityField === 'priority' ) {
+		priorityField = 99;
+	}
+
+	if ( priorityField < 100 ) {
+		priorityField--;
+	}
 
 	var newTag = document.getElementById("tagsCreate").value.toLowerCase();
+
+	if ( newTag === 'tag1,tag2, tag3' ) {
+		newTag = '';
+	}
+
 	var stripLeadingSpace = newTag.replace(/, /g, ',');
 	var noSpaces = stripLeadingSpace.replace(/ /g, '_');
 	var newTags = noSpaces.split(",");
 
-	newPunch(window.uid, subjectField, priorityField, progressField, nDateField, notesField, newTags);
+	newPunch(window.uid, subjectField, parseInt(priorityField), progressField, nDateField, notesField, newTags);
 
 	disableElement("newEvent");
 	enableElement("punchListAll");
