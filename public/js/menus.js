@@ -23,5 +23,5 @@ window.onclick = function(event) {
 			}
 		}
 	}
-};
+};;
 // end menus //
