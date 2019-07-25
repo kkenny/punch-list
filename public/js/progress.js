@@ -29,32 +29,35 @@ function setPunchProgress(reference, p) {
 
 	conLog("function: setPunchProgress(" + reference + ", " + p + ")");
 
+	var start,
+			startTime,
+			end,
+			endTime,
+			priority;
+
 	var progress = {};
+
 	progress['users/' + window.uid + '/punches/' + reference + '/progress'] = p;
 	firebase.database().ref().update(progress);
 
 	switch(p.toLowerCase()) {
 		case "in progress":
 			// execute
-			var refClass = "inProgress";
-			var rmClass = [ "punch-default", "waiting" ];
-
-			var start = new Date().getTime();
-			var startTime = {};
+			start = new Date().getTime();
+			startTime = {};
 			startTime['users/' + window.uid + '/punches/' + reference + '/startTime'] = start;
 
 			firebase.database().ref().update(startTime);
-			//startPunch(reference);
+
 			break;
-		case "waiting":
-			// execute
-			var refClass = "waiting";
-			var rmClass = [ "punch-default", "inProgress" ];
-			break;
+
 		case "done":
-			var end = new Date().getTime();
-			var endTime = {};
+			end = new Date().getTime();
+			endTime = {};
 			endTime['users/' + window.uid + '/punches/' + reference + '/endTime'] = end;
+
+			priority = 99999;
+			setPriority(reference, priority);
 
 			firebase.database().ref().update(endTime);
 			positionLoop();

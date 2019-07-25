@@ -17,7 +17,7 @@ function genDaily() {
 	conLog("function: genDaily()");
 
 	var daily = [ "Check Workday", "Check Expenses", "Check Change Cases", "Check TD's", "Check at-mentions" ];
-	conLog(`${daily[1]}`);
+	conLog(daily[1]);
 	priority = parseInt("3");
 
 	var d = new Date();
@@ -62,22 +62,27 @@ function genWeekly() {
 
 // Set styles
 function setStyle(reference, progress) {
+	var refClass,
+			rmClass,
+			i,
+			c;
+
 	switch(progress.toLowerCase()) {
 		case "new":
 			// execute
-			var refClass = "punch-default";
-			var rmClass = [ "waiting", "inProgress" ];
+			refClass = "punch-default";
+			rmClass = [ "waiting", "inProgress" ];
 			break;
 		case "in progress":
 			// execute
-			var refClass = "inProgress";
-			var rmClass = [ "punch-default", "waiting" ];
+			refClass = "inProgress";
+			rmClass = [ "punch-default", "waiting" ];
 			startPunch(reference);
 			break;
 		case "waiting":
 			// execute
-			var refClass = "waiting";
-			var rmClass = [ "punch-default", "inProgress" ];
+			refClass = "waiting";
+			rmClass = [ "punch-default", "inProgress" ];
 			break;
 		case "done":
 			completePunch(reference);
@@ -87,9 +92,6 @@ function setStyle(reference, progress) {
 	}
 
 	elementIds = [ '#' + reference, '#progress' + reference ];
-
-	var c;
-	var i;
 
 	conLog("Element Ids: " + elementIds);
 	for (i in elementIds) {
@@ -115,13 +117,13 @@ function mkSortable(){
 			start: function(event, ui) {
 				//conLog($( this ).( "li" ));
 				conLog(ui.item.context.id);
-				conLog(`Start Position: ${ui.item.index()}`);
+				conLog("Start Position: " + ui.item.index());
 			},
 			stop: function(event, ui) {
 //				setPriority(window.sortObjectUUID, ui.item.index());
 				conLog(event, ui);
 				setPriority(ui.item.context.id, ui.item.index());
-				conLog(`New Position: ${ui.item.index()}`);
+				conLog("New Position: " + ui.item.index());
 				positionLoop();
 			}
 		});
@@ -201,12 +203,12 @@ function enableDetail(){
 
 // some element functions...
 function enableElement(element) {
-	conLog(`enabling ${element}`);
+	conLog("enabling element: " + element);
 	document.getElementById(element).style.display = "block";
 }
 
 function disableElement(element) {
-	conLog(`disabling ${element}`);
+	conLog("disabling element: " + element);
 	document.getElementById(element).style.display = "none";
 }
 

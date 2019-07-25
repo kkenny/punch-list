@@ -18,9 +18,9 @@ function initApp() {
   // Auth state changes.
   // [START authstatelistener]
   firebase.auth().onAuthStateChanged(function(user){
-		conLog(`in onAuthStateChanged`);
+		conLog("in onAuthStateChanged");
     if (user) {
-			conLog(`${user.displayName}`);
+			conLog(user.displayName);
       // User is signed in.
       var displayName = user.displayName;
       var email = user.email;

@@ -28,6 +28,6 @@ function loadPunches(uid) {
 window.onload = function() {
   initApp();
 	document.getElementById("versionInfo").innerHTML = version;
-	document.getElementById("versionInfo").innerHTML += '<br /><a href="#" onClick="isListSorted()">Sorted?</a>'
+	document.getElementById("versionInfo").innerHTML += '<br /><a href="#" onClick="isListSorted()">Sorted?</a>';
 };
 

@@ -5,10 +5,15 @@ function genPunchListItem(elementData, element) {
 
 
 function addPunchElement(childKey, childData) {
+	var style,
+			time,
+			tags,
+			i,
+			comma;
 
-	if (childData.progress.toLowerCase() === "in progress") { var style = "inProgress"; }
-	else if (childData.progress.toLowerCase() === "waiting") { var style = "waiting"; }
-	else if (childData.progress.toLowerCase() === "new") { var style = "punch-default"; }
+	if (childData.progress.toLowerCase() === "in progress") { style = "inProgress"; }
+	else if (childData.progress.toLowerCase() === "waiting") { style = "waiting"; }
+	else if (childData.progress.toLowerCase() === "new") { style = "punch-default"; }
 	else { style = "punch-default"; }
 
 	if (childData.progress.toLowerCase() != "done") {
@@ -51,20 +56,20 @@ function addPunchElement(childKey, childData) {
 		genPunchListItem('<div id="backlog-list-content' + childKey + '" class="backlog-list-content details-container"><div id="punch-list-backlog-details' + childKey + '" class="punch-list-backlog-details"></div></div>', '#div-portlet' + childKey) ;
 		if ( childData.startTime != undefined ) {
 			genPunchListItem('<div id="startTime" class="three columns punch-default started">' + formatDate(childData.startTime) + '</div>', '#punch-list-backlog-details' + childKey);
-			var time = new Date(childData.startTime).getTime();
+			time = new Date(childData.startTime).getTime();
 			createTimer("timer" + childKey, time);
 		}
 		if ( childData.tags != undefined ) {
-			var tags = childData.tags;
+			tags = childData.tags;
 			genPunchListItem('<div id="tags-container-summary' + childKey + '" class="twelve columns"></div>', '#details-col-five' + childKey);
 			genPunchListItem('<div id="tags-container' + childKey + '" class="twelve columns"></div>', '#punch-list-backlog-details' + childKey);
 			genPunchListItem('<div class="two columns tags-details">Tags: </div>', '#tags-container' + childKey);
 			genPunchListItem('<div id="tags-column' + childKey + '" class="nine columns tags-details"></div>', '#tags-container' + childKey);
-			var i;
+
 			for (i=0; i<tags.length; i++) {
 				tagData = tags[i];
-				if ((tags.length - 1) === i) { var comma = ' '; }
-				else { var comma = ','; }
+				if ((tags.length - 1) === i) { comma = ' '; }
+				else { comma = ','; }
 				genPunchListItem('<a id="tags-summary-' + tagData + childKey + '" class="punch-default tags-summary ' + tagData +'" href="#" onClick=tagFilter("' + tagData + '")>' + tagData + comma + '</a>', '#tags-container-summary' + childKey);
 				genPunchListItem('<a id="tags-details-' + tagData + childKey + '" class="tags-details" href="#" onClick=tagFilter("' + tagData + '")>' + tagData + comma + '</a>', '#tags-column' + childKey);
 			}
