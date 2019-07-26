@@ -32,19 +32,3 @@ function updatePunchElement(childKey, childData) {
 	}
 }
 
-var looper = setInterval(function() {
-	var uid = window.uid;
-	var punchesRef = firebase.database().ref('users/' + uid + '/punches').orderByChild('priority');
-	punchesRef.on('child_changed', function(data) {
-		conLog("Child Changed");
-		updatePunchElement(data.key, data.val());
-//		deletePunchElement(data.key);
-//		addPunchElement(data.key, data.val());
-	});
-
-	punchesRef.on('child_removed', function(data) {
-		conLog("child Removed");
-		deletePunchElement(data.key);
-	});
-}, 1000);
-
