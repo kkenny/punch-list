@@ -17,8 +17,8 @@ function addPunchElement(childKey, childData) {
 	else { style = "punch-default"; }
 
 	if (childData.progress.toLowerCase() != "done") {
-		genPunchListItem('<li id="' + childKey + '" priority=' + childData.priority + ' class="' + style + '"></li>', '#sortable');
-		genPunchListItem('<div id="div-portlet' + childKey + '" class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>', '#' + childKey);
+		genPunchListItem('<li id="' + childKey + '" priority=' + childData.priority + ' class="ui-widget-content ui-helper-clearfix ui-corner-all ' + style + '"><i class="material-icons drag_handle">drag_handle</i></li>', '#sortable');
+		genPunchListItem('<div id="div-portlet' + childKey + '" class="portlet"></div>', '#' + childKey);
 		genPunchListItem('<div id="priority-container' + childKey + '" class="priority-container"></div>', '#div-portlet' + childKey);
 		genPunchListItem('<div id="details-container' + childKey + '" class="container details-container"></div>', '#div-portlet' + childKey);
 		genPunchListItem('<div id="priority' + childKey + '" class="twelve columns priority">' + childData.priority + '</div>', '#priority-container' + childKey);

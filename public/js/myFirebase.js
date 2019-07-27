@@ -30,7 +30,7 @@ function listener(uid) {
 		addPunchElement(data.key, data.val());
 	});
 
-//	mkSortable();
+	mkSortable();
 //	sortList();
 //}
 
