@@ -114,8 +114,8 @@ function mkSortable(){
 			placeholder: "portlet-placeholder ui-corner-all",
 			revert: true,
 			distance: 50,
-			delay: 500,
-			handle: 'i.material-icons.drag_handle',
+			delay: 300,
+			handle: 'div.material-icons.drag_handle',
 			start: function(event, ui) {
 				//conLog($( this ).( "li" ));
 				conLog(ui.item.context.id);

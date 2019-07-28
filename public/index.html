@@ -28,7 +28,6 @@
 
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/datepicker.min.css">
@@ -40,6 +39,7 @@
 		<link rel="stylesheet" href="css/custom.css">
 		<link rel="stylesheet" href="css/custom-medium.css">
 		<link rel="stylesheet" href="css/custom-large.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<!-- scripts -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -86,7 +86,7 @@
 
 			<div id=middle class="column-middle">
 		<div class="dropdown-menu" id=mainMenuWrapper>
-			<button class="top dropbtn" onclick=mainMenuDrop() id=mainMenu>Menu</button>
+			<i class="material-icons top dropbtn main-menu" onclick=mainMenuDrop() id=mainMenu>menu</i>
 			<div id=mainMenuDropdown class="dropdown-content punch-default">
 				<a href="#" onclick="genEventForm()">New Punch Item</a>
 				<a href="#" onclick="genDaily()">Generate Daily Punches</a>
@@ -124,7 +124,11 @@
 					<div style="width: 100%;" class='punch-default u-pull-right' id=versionInfo></div>
 				</div>
 				<div id="whoami"></div>
-		<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+				<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+			</div>
+
+			<div class="fixed-action-btn">
+				<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 			</div>
 
 			<div id=right class="column-right" style="float:left">

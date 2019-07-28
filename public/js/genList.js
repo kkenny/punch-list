@@ -17,18 +17,18 @@ function addPunchElement(childKey, childData) {
 	else { style = "punch-default"; }
 
 	if (childData.progress.toLowerCase() != "done") {
-		genPunchListItem('<li id="' + childKey + '" priority=' + childData.priority + ' class="ui-widget-content ui-helper-clearfix ui-corner-all ' + style + '"><i class="material-icons drag_handle">drag_handle</i></li>', '#sortable');
+		genPunchListItem('<li id="' + childKey + '" priority=' + childData.priority + ' class="ui-widget-content ui-helper-clearfix ui-corner-all ' + style + '"><div class="material-icons drag_handle">drag_handle</div></li>', '#sortable');
 		genPunchListItem('<div id="div-portlet' + childKey + '" class="portlet"></div>', '#' + childKey);
 		genPunchListItem('<div id="priority-container' + childKey + '" class="priority-container"></div>', '#div-portlet' + childKey);
 		genPunchListItem('<div id="details-container' + childKey + '" class="container details-container"></div>', '#div-portlet' + childKey);
 		genPunchListItem('<div id="priority' + childKey + '" class="twelve columns priority">' + childData.priority + '</div>', '#priority-container' + childKey);
-		genPunchListItem('<div id="subject' + childKey + '" class="subject">' + childData.subject + '</div><div id="detail-link' + childKey + '" class="two columns u-pull-right"><button style="margin-left: 10px;" class="punch-default u-pull-right" onclick=toggleElement(\'backlog-list-content' + childKey + '\')>details</button></div>', '#details-container' + childKey);
+		genPunchListItem('<div id="subject' + childKey + '" class="subject">' + childData.subject + '</div><div id="detail-link' + childKey + '" class="two columns u-pull-right"><button style="margin-left:50%; margin-right: 50%; width: 10px; margin-top:50%; margin-bottom: 50%" class="punch-default u-pull-right" onclick=toggleElement(\'backlog-list-content' + childKey + '\')>details</button></div>', '#details-container' + childKey);
 		genPunchListItem('<div id="details-col-one' + childKey + '" class="progress-wrapper"></div>', '#details-container' + childKey);
 		genPunchListItem('<div id="progress' + childKey +'" class="twelve columns ' + style + '">' + childData.progress + '</div>', '#details-col-one' + childKey);
 		genPunchListItem('<div class="twelve columns punch-default" style="color: lime" id="timer' + childKey + '"></div>', '#details-col-one' + childKey);
 		// status dropdown
 		genPunchListItem('<div id="dropdown-wrapper' + childKey + '" class="dropdown"></div>', '#details-container' + childKey);
-		genPunchListItem('<img class="top dropbtn" onclick=progressMenuDrop("' + childKey + '") src="images/down-carrot.png">', '#dropdown-wrapper' + childKey);
+		genPunchListItem('<i onclick=\'progressMenuDrop("' + childKey + '")\' class="material-icons top dropbtn">menu</a>', '#dropdown-wrapper' + childKey);
 		genPunchListItem('<div id="progressDropdown' + childKey + '" class="dropdown-content punch-default"></div>', '#dropdown-wrapper' + childKey);
 		genPunchListItem('<a href="#" onClick=\'setPunchProgress("' + childKey + '", "new")\'>New</a>', '#progressDropdown' + childKey);
 		genPunchListItem('<a href="#" onClick=\'setPunchProgress("' + childKey + '", "in progress")\'>Start</a>', '#progressDropdown' + childKey);

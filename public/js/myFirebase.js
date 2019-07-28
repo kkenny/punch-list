@@ -1,4 +1,4 @@
-var version = "2019.07.26-1538";
+var version = "2019.07.27-20:53";
 
 var logging = false;
 
@@ -14,6 +14,12 @@ window.onload = function() {
   initApp();
 	document.getElementById("versionInfo").innerHTML = version;
 	document.getElementById("versionInfo").innerHTML += '<br /><a href="#" onClick="isListSorted()">Sorted?</a>';
+
+/*
+	$(document).ready(function(){
+		$('.fixed-action-btn').floatingActionButton();
+	});
+*/
 };
 
 //	var uid = window.uid;
