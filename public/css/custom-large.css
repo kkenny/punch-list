@@ -30,15 +30,13 @@
 		text-shadow: 0 0 23px #FFF;
 	}
 	.tags-details {
-		display: none;
+		display: inline-block;
 	}
 	.subject {
 		color: #FFF;
-		float: left;
 		font-size: 2rem;
 		font-weight: 900;
 		overflow: hidden;
-		width: 70%;
 	}
 	.column-left {
 		background-color: #000;

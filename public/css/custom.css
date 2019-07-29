@@ -1,5 +1,11 @@
 /* Mobile first */
 /* and generic stuff */
+
+ol, ul {
+	font-size: inherit;
+	list-style-type: none;
+}
+
 .progress-wrapper {
 	float: left;
 	text-align: left;
@@ -36,20 +42,43 @@ button:hover {
 }
 .priority {
 	color: #7b9095;
+	float: left;
 	font-size: 35px;
-	min-width:50px;
+	font-weight: 900;
+	margin: 5px;
+	vertical-align: top;
 }
-li.inProgress {
-	border: 4px solid lime;
+.priority-wrapper {
+	display: inline-block;
+	float: left;
+	min-width: 50px;
+	vertical-align: top;
+	margin-top: 3px;
+}
+.status-icons {
+	position: relative;
+	color: #fff;
+	cursor: pointer;
+	display: block;
+	float: right;
+	font-weight: 900;
+	vertical-align: top;
 }
 .inProgress {
-	color:orange;
+	color: lime;
 }
 .tags-summary {
 	display: none;
+	cursor: pointer;
+}
+.tags-wrapper {
+	display: block;
+	float: left;
 }
 .tags-details {
-	margin-left: 10px;
+	color: #00BFFF;
+	cursor: pointer;
+	margin-left: 3px;
 }
 a.tags-details {
 	color: #00BFFF;
@@ -61,10 +90,14 @@ a.tags-details:hover {
 }
 .subject {
 	color: #FFF;
-	float: left;
-	font-size: 1.5rem;
-	min-width: 80%;
+/*	float: left; */
+	font-size: 2.0rem;
+	font-weight: 900;
+/*	min-width: 80%; */
 	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: top;
+	width: 75%;
 }
 body {
 	background: #222;
@@ -91,6 +124,7 @@ body {
 	clear: both;
 	content: "";
 }
+/*
 #sortable {
 	list-style-type: none;
 	margin: 0;
@@ -101,9 +135,9 @@ body {
 	color: #AAA;
 }
 #sortable li span {
-	margin-left: -1.3em;
+/*	margin-left: -1.3em;
 	position: absolute;
-}
+}*/
 .portlet {
 	padding: 0.3em;
 }
@@ -164,17 +198,32 @@ a.punch-default:hover {
 .waiting {
 	color: red;
 }
-li.waiting {
-	border: 4px solid red ;
-}
 .overdue {
 	border: 1px solid red;
-	color: red;
-	padding:3px;
+	color: #fff;
+	padding: 3px;
+	background-color: red;
+}
+.needby-wrapper {
+	float: left;
+	display: block;
+	font-family: "Arial Black";
+	font-weight: 600;
+	font-size: 16px;
+/*	margin-left: 40px;*/
+	text-align: center;
+	width: 99%;
+}
+.needby-date {
+	padding-right: 15px;
+}
+.needby-timer {
+	padding-right: 15px;
 }
 .duesoon {
 	border: 1px solid yellow;
-	color: yellow;
+	background-color: yellow;
+	color: black;
 	padding:3px;
 }
 .hide {
@@ -193,9 +242,9 @@ i {
 	border-width: 0 3px 3px 0;
 	cursor: pointer;
 	display: inline-block;
-/*	float: left;*/
+	float: left;
 	font-size: 42px;
-	padding: 8px;
+	padding: 3px;
 }
 .down {
 	-ms-transform: rotate(45deg);
@@ -448,13 +497,10 @@ textarea {
 	margin-top: 6rem;
 	text-align: center;
 }
-.header {
-	background: #666;
-}
 .navbar {
 	background: #222;
 }
 .punches {
 	text-align: left;
 }
-
+.truncate{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; float:left;}

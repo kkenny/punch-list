@@ -10,11 +10,6 @@
 	}
 	.subject {
 		color: #FFF;
-		float: left;
-		font-size: 2rem;
-		font-weight: 900;
-		overflow: hidden;
-		width: 70%;
 	}
 	.button {
 		background-color:  #4CAF50;

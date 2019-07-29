@@ -17,16 +17,20 @@ function addPunchElement(childKey, childData) {
 
 	if (childData.progress.toLowerCase() != "done") {
 		// Start List Item
-		genPunchListItem('<li id="' + childKey + '" priority=' + childData.priority + ' class="ui-widget-content ui-helper-clearfix ui-corner-all ' + style + '"></li>', '#sortable');
+		genPunchListItem('<li id="' + childKey + '" priority=' + childData.priority + ' class="ui-widget-content ui-helper-clearfix ui-corner-all"></li>', '#sortable');
 		genPunchListItem('<span id="handle' + childKey + '" class="material-icons drag_handle">drag_handle</span>', '#' + childKey);
-		genPunchListItem('<span id="priority' + childKey + '" class="priority">' + childData.priority + '</span>', '#' + childKey);
-		genPunchListItem('<span id="subject' + childKey + '" class="subject">' + childData.subject + '</span>', '#' + childKey);
+		genPunchListItem('<div id="priority-wrapper' + childKey + '" class="priority-wrapper">', '#' + childKey);
+		genPunchListItem('<span id="priority' + childKey + '" class="priority">' + childData.priority + '</span>', '#priority-wrapper' + childKey);
+		genPunchListItem('<span id="subject' + childKey + '" class="subject truncate">' + childData.subject + '</span>', '#' + childKey);
 
 		// Status Icons
 		genPunchListItem('<div id="set_status' + childKey + '" class="status-icons"></div>', '#' + childKey);
-		genPunchListItem('<span id="start-icon' + childKey + '" class="material-icons icon-start ' + style + '" onClick=\'setPunchProgress("' + childKey + '", "in progress")\'>play_circle_outline</span>', '#set_status' + childKey);
-		genPunchListItem('<span id="wait-icon' + childKey + '" class="material-icons icon-wait ' + style + '" onClick=\'setPunchProgress("' + childKey + '", "waiting")\'>error_outline</span>', '#set_status' + childKey);
-		genPunchListItem('<span id="finish-icon' + childKey + '" class="material-icons icon-finish ' + style + '" onClick=\'setPunchProgress("' + childKey + '", "done")\'>check_circle_outline</span>', '#set_status' + childKey);
+		genPunchListItem('<span id="start-icon' + childKey + '" class="material-icons icon-start" onClick=\'setPunchProgress("' + childKey + '", "in progress")\'>play_circle_outline</span>', '#set_status' + childKey);
+		genPunchListItem('<span id="wait-icon' + childKey + '" class="material-icons icon-wait" onClick=\'setPunchProgress("' + childKey + '", "waiting")\'>error_outline</span>', '#set_status' + childKey);
+		genPunchListItem('<span id="finish-icon' + childKey + '" class="material-icons icon-finish" onClick=\'setPunchProgress("' + childKey + '", "done")\'>check_circle_outline</span>', '#set_status' + childKey);
+		genPunchListItem('<span id="edit-icon' + childKey + '" class="material-icons icon-edit" onClick=\'editPunch("' + childKey + '")\'>edit</span>', '#set_status' + childKey);
+
+		setStyle(childKey,childData.progress);
 
 		// Need By Date & Timer
 		genPunchListItem('<div id="needby-wrapper' + childKey + '" class="needby-wrapper"></div>', '#' + childKey);
@@ -44,7 +48,7 @@ function addPunchElement(childKey, childData) {
 
 		if ( childData.tags != undefined ) {
 			tags = childData.tags;
-			genPunchListItem('<div id="tags-container' + childKey + '" class="tags-details"></div>', '#' + childKey);
+			genPunchListItem('<div id="tags-container' + childKey + '" class="tags-wrapper"></div>', '#' + childKey);
 
 			for (i=0; i<tags.length; i++) {
 				tagData = tags[i];

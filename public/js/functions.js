@@ -63,6 +63,7 @@ function genWeekly() {
 // Set styles
 function setStyle(reference, progress) {
 	var refClass,
+			refElement,
 			rmClass,
 			i,
 			c;
@@ -71,18 +72,17 @@ function setStyle(reference, progress) {
 		case "new":
 			// execute
 			refClass = "punch-default";
-			rmClass = [ "waiting", "inProgress" ];
 			break;
 		case "in progress":
 			// execute
+			refElement = '#start-icon' + reference;
 			refClass = "inProgress";
-			rmClass = [ "punch-default", "waiting" ];
 //			startPunch(reference);
 			break;
 		case "waiting":
 			// execute
+			refElement = '#wait-icon' + reference;
 			refClass = "waiting";
-			rmClass = [ "punch-default", "inProgress" ];
 			break;
 		case "done":
 			completePunch(reference);
@@ -91,7 +91,8 @@ function setStyle(reference, progress) {
 			conLog("function: setStyle(" + reference + ", " + progress + "), did not match a condition. :(");
 	}
 
-	elementIds = [ '#' + reference, '#progress' + reference ];
+	rmClass = [ "punch-default", "waiting", "inProgress" ];
+	elementIds = [ '#start-icon' + reference, '#wait-icon' + reference ];
 
 	conLog("Element Ids: " + elementIds);
 	for (i in elementIds) {
@@ -99,8 +100,8 @@ function setStyle(reference, progress) {
 			conLog("Removing: " + rmClass[c] + ", from: " + elementIds[i]);
 			$( elementIds[i] ).removeClass( rmClass[c] );
 		}
-		conLog("Adding: " + refClass + ", to: " + elementIds[i]);
-		$( elementIds[i] ).addClass( refClass );
+		conLog("Adding: " + refClass + ", to: " + refElement);
+		$( refElement ).addClass( refClass );
 	}
 }
 
