@@ -70,15 +70,15 @@
 			</div>
 
 			<div id=middle class="column-middle">
-		<div class="dropdown-menu" id=mainMenuWrapper>
+<!--		<div class="dropdown-menu" id=mainMenuWrapper>
 			<i class="material-icons top dropbtn main-menu" onclick=mainMenuDrop() id=mainMenu>menu</i>
 			<div id=mainMenuDropdown class="dropdown-content punch-default">
 				<a href="#" onclick="genEventForm()">New Punch Item</a>
 				<a href="#" onclick="genDaily()">Generate Daily Punches</a>
 				<a href="#" onclick="genWeekly()">Generate Weekly Punches</a>
-				<!-- <a href="https://thelinux.pro/broadcast_timer">Broadcast Timer</a> -->
 			</div>
 		</div>
+-->
 				<div id="editPunch" class="listWrapper"></div>
 				<div class="listWrapper" id="punchListAll">
 					<div id="punchListInProgressWrapper" class="listWrapper">
@@ -122,5 +122,8 @@
 				</div>
 			</div>
 		</div>
+		<span id="new-punch-button" class="btn-floating btn-large float" onclick="genEventForm()">
+			<span class="material-icons my-float">add</span>
+		</span>
   </body>
 </html>

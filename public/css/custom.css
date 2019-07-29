@@ -506,3 +506,30 @@ textarea {
 .icon-start, .icon-wait, .icon-finish, .icon-edit {
 	font-size: 40px;
 }
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:20px;
+	right:40px;
+	background-color:#00a196;
+	color:#000;
+	border-radius:90px;
+	text-align:center;
+/*	box-shadow: 5px 10px 10px #aaa;*/
+	box-shadow: 0px 3px 20px rgba(27, 163, 194, 1);
+	transition: all 0.3s ease 0s;
+}
+
+.float:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+.my-float{
+	margin-top: 10px;
+	color: #000;
+	font-size: 4rem;
+	font-weight: 900;
+}

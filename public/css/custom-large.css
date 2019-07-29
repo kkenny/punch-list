@@ -131,4 +131,8 @@
 	.has-docked-nav .navbar > .container {
 	  width: 80%;
 	}
+	.float{
+		bottom:30px;
+		right:18%;
+	}
 }
