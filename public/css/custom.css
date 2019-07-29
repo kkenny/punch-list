@@ -208,9 +208,11 @@ a.punch-default:hover {
 	font-family: "Arial Black";
 	font-weight: 600;
 	font-size: 16px;
+	overflow: hidden;
 /*	margin-left: 40px;*/
 	text-align: center;
 	width: 99%;
+	padding-right: 1%;
 }
 .needby-date {
 	padding-right: 15px;
@@ -221,7 +223,6 @@ a.punch-default:hover {
 .duesoon {
 	background-color:  #d86b00;
 	color: black;
-	padding:3px;
 }
 .hide {
 	display: none;
