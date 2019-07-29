@@ -77,7 +77,7 @@ function setStyle(reference, progress) {
 			// execute
 			refClass = "inProgress";
 			rmClass = [ "punch-default", "waiting" ];
-			startPunch(reference);
+//			startPunch(reference);
 			break;
 		case "waiting":
 			// execute
@@ -115,7 +115,7 @@ function mkSortable(){
 			revert: true,
 			distance: 50,
 			delay: 300,
-			handle: 'div.material-icons.drag_handle',
+			handle: '.drag_handle',
 			start: function(event, ui) {
 				//conLog($( this ).( "li" ));
 				conLog(ui.item.context.id);
@@ -241,7 +241,7 @@ function createTimer(element,timeTo) {
 
 			var exists = document.getElementById(element);
 			if (exists != null) {
-				document.getElementById(element).innerHTML = days + "day(s), " + hours + ":" + minutes + ":" + seconds;
+				document.getElementById(element).innerHTML = days + " day(s), " + hours + ":" + minutes + ":" + seconds;
 			} else {
 //				conLog("Could not update: " + element + ", because: " + exists);
 			}
