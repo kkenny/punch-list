@@ -20,6 +20,12 @@
 		font-size: 1em;
 		margin-left: 10px;
 	}
+	.tags-wrapper {
+		display: block;
+		float: left;
+		overflow-wrap: break-word;
+		width: 60%;
+	}
 	a.tags-summary {
 		color: #00BFFF;
 		float:left;
