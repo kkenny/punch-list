@@ -17,7 +17,7 @@ function addPunchElement(childKey, childData) {
 
 	if (childData.progress.toLowerCase() != "done") {
 		// Start List Item
-		genPunchListItem('<li id="' + childKey + '" priority=' + childData.priority + ' class="ui-widget-content ui-helper-clearfix ui-corner-all"></li>', '#sortable');
+		genPunchListItem('<li id="' + childKey + '" priority=' + childData.priority + ' class="ui-widget-content ui-helper-clearfix ui-corner-all magictime puffIn"></li>', '#sortable');
 		genPunchListItem('<span id="handle' + childKey + '" class="material-icons drag_handle">drag_handle</span>', '#' + childKey);
 		genPunchListItem('<div id="priority-wrapper' + childKey + '" class="priority-wrapper">', '#' + childKey);
 		genPunchListItem('<span id="priority' + childKey + '" class="priority">' + childData.priority + '</span>', '#priority-wrapper' + childKey);
@@ -60,6 +60,9 @@ function addPunchElement(childKey, childData) {
 			}
 		}
 
+		setTimeout(function(){
+			$('#' + childKey).removeClass('magictime puffIn');
+		}, 3000);
 
 	}
 

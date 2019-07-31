@@ -21,7 +21,10 @@ function completePunch(reference) {
 
 	conLog("function: completePunch(" + reference + ")");
 
-	deletePunchElement(reference);
+	$('#' + reference).addClass('magictime puffOut');
+	setTimeout(function(){
+		deletePunchElement(reference);
+	},1500);
 
 }
 

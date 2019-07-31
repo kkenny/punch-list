@@ -12,6 +12,54 @@ function clearDefault(a){
 	}
 }
 
+function getWeekNumber(d) {
+    // Copy date so don't modify original
+    d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    // Set to nearest Thursday: current date + 4 - current day number
+    // Make Sunday's day number 7
+    d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
+    // Get first day of year
+    var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+    // Calculate full weeks to nearest Thursday
+    var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+    // Return array of year and week number
+    return d.getUTCFullYear() + '-' +weekNo;
+}
+// Check if daily punches have been created?
+
+// /user/uid/autopunch/daily/YYYY-mm-dd = [true|false]
+
+var cycleAutoPunch = setInterval(function() {
+	autoPunch();
+},60000);
+
+function autoPunch() {
+
+	var d = new Date();
+	var today = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+	var week = getWeekNumber(d);
+
+	firebase.database().ref('users/' + window.uid + '/autopunch/daily/created').once('value').then(function(snapshot) {
+		var dayRef = snapshot.val();
+		if ( dayRef != today ) {
+			genDaily();
+			firebase.database().ref('users/' + window.uid + '/autopunch/daily').update({
+				created: today
+			});
+		}
+	});
+
+	firebase.database().ref('users/' + window.uid + '/autopunch/weekly/created').once('value').then(function(snapshot) {
+		var weekRef = snapshot.val();
+		if ( weekRef != week ) {
+			genWeekly();
+			firebase.database().ref('users/' + window.uid + '/autopunch/weekly').update({
+				created: week
+			});
+		}
+	});
+
+}
 // Generate Daily Punches function
 function genDaily() {
 	conLog("function: genDaily()");
@@ -31,6 +79,7 @@ function genDaily() {
 	for (x = 0; x < daily.length; x++) {
 		newPunch(window.uid, daily[x], priority, "new", needBy, "", newTags);
 	}
+
 
 	sortList();
 }

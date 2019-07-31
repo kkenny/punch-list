@@ -30,9 +30,10 @@ function initApp() {
       var uid = user.uid;
 			window.uid = uid;
       var providerData = user.providerData;
-			writeUserData(uid, displayName, email, photoURL);
+//			writeUserData(uid, displayName, email, photoURL);
 			//newPunch(uid);
 			listener(uid);
+			autoPunch();
 			document.getElementById('whoami').innerHTML = email;
       // [START_EXCLUDE]
       //document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
