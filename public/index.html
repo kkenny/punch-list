@@ -27,6 +27,7 @@
 		<link rel="stylesheet" href="css/custom-medium.css">
 		<link rel="stylesheet" href="css/custom-large.css">
 		<link rel="stylesheet" href="css/menu.css">
+		<link rel="stylesheet" href="css/punch-details.css">
 		<!-- scripts -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -127,6 +128,17 @@
 				<div class="twelve columns events">
 					<div id="events-list"></div>
 				</div>
+			</div>
+		</div>
+
+		<!-- The Details overlay -->
+		<div id='punch-details' class='details-overlay'>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeDetails()">&times;</a>
+			<div id='punch-details-content' class="details-overlay-content">
+				<div><div class="details-content-label">Subject: </div><span id='details-subject'></span></div>
+				<div><div class="details-content-label">Progress: </div><span id='details-progress'></span></div>
+				<div><div class="details-content-label">Tags: </div><span id='details-tags'></span></div>
+				<div><div class="details-content-label">Notes: </div><div id='details-notes' class='details-content-notes'></div></div>
 			</div>
 		</div>
 

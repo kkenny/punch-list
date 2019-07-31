@@ -323,3 +323,28 @@ function openNav() {
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
 }
+
+function openDetails(punch) {
+	firebase.database().ref('users/' + window.uid + '/punches/' + punch).once('value').then(function(snapshot) {
+		var data = snapshot.val();
+		document.getElementById('details-subject').innerHTML = data.subject;
+		document.getElementById('details-progress').innerHTML = data.progress;
+		document.getElementById('details-tags').innerHTML = data.tags;
+		document.getElementById('details-notes').innerHTML = data.notes;
+		document.getElementById('punch-details-content').innerHTML += '<div id="details-needby-date-timer' + punch + '" class="details-needby-timer"></div>';
+
+		createTimer('details-needby-date-timer' + punch, data.needByDate);
+
+		if ( (new Date(data.needByDate).getTime() - new Date().getTime()) <= 0 ) {
+			$( '.details-needby-timer' ).addClass( 'overdue' );
+		} else if ( ((new Date(data.needByDate).getTime() - new Date().getTime()) / 1000) <= 259200 ) {
+			$( '.details-needby-timer' ).addClass( 'duesoon' );
+		}
+	});
+  document.getElementById("punch-details").style.height = "100%";
+}
+
+function closeDetails() {
+  document.getElementById("punch-details").style.height = "0%";
+	$( '.details-needby-timer' ).remove();
+}

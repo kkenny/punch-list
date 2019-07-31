@@ -21,7 +21,7 @@ function addPunchElement(childKey, childData) {
 		genPunchListItem('<span id="handle' + childKey + '" class="material-icons drag_handle">drag_handle</span>', '#' + childKey);
 		genPunchListItem('<div id="priority-wrapper' + childKey + '" class="priority-wrapper">', '#' + childKey);
 		genPunchListItem('<span id="priority' + childKey + '" class="priority">' + childData.priority + '</span>', '#priority-wrapper' + childKey);
-		genPunchListItem('<span id="subject' + childKey + '" class="subject truncate">' + childData.subject + '</span>', '#' + childKey);
+		genPunchListItem('<span id="subject' + childKey + '" class="subject truncate" onclick=openDetails("' + childKey +'")>' + childData.subject + '</span>', '#' + childKey);
 
 		// Tags
 		if ( childData.tags != undefined ) {
