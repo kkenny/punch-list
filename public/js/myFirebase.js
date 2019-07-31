@@ -1,4 +1,4 @@
-var version = "2019.07.29-1245";
+var version = "2019.07.31-1336-alpha";
 
 var logging = false;
 
