@@ -97,12 +97,12 @@
 					<div class="form-label">Subject: </div>
 					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newSubject" value="">
 					<div class="form-label">Priority: </div>
-					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newPriority" value="[number]">
+					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newPriority" value="">
 					<input type="hidden" id="newProgress" value="new">
 					<div class="form-label">Date / Time: </div>
-					<input onfocus="clearDefault(this)" type="text" id="timepickerCreate" class="datepicker-here u-full-width" data-timepicker="true" data-language="en" value="Month dd, YYYY [00-23]:[00-59]">
+					<input onfocus="clearDefault(this)" type="text" id="timepickerCreate" class="datepicker-here u-full-width" data-timepicker="true" data-language="en" value="">
 					<div class="form-label">Tags: </div>
-					<input onFocus="clearDefault(this)" type="text" id="tagsCreate" class="u-full-width" value="tag1,tag2, tag3">
+					<input onFocus="clearDefault(this)" type="text" id="tagsCreate" class="u-full-width" value="">
 					<div class="form-label">Notes: </div>
 					<textarea class="u-full-width" id="newNotes" value=""></textarea>
 					<button id="subit-new" class="form-button" onClick="createNewEvent()">Create</button>
@@ -111,20 +111,6 @@
 
 <!-- Templates -->
 				<div class="container row" id="templatePunch">
-					<select><option value="Daily"><option value="Weekly">Weekly</option><option value="Monthly">Monthly</option><option value="Annually">Annually</option></select>
-					<div class="form-label">Subject: </div>
-					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newSubject" value="">
-					<div class="form-label">Priority: </div>
-					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newPriority" value="[number]">
-					<input type="hidden" id="newProgress" value="new">
-					<div class="form-label">Date / Time: </div>
-					<input onfocus="clearDefault(this)" type="text" id="timepickerCreate" class="datepicker-here u-full-width" data-timepicker="true" data-language="en" value="Month dd, YYYY [00-23]:[00-59]">
-					<div class="form-label">Tags: </div>
-					<input onFocus="clearDefault(this)" type="text" id="tagsCreate" class="u-full-width" value="tag1,tag2, tag3">
-					<div class="form-label">Notes: </div>
-					<textarea class="u-full-width" id="newNotes" value=""></textarea>
-					<button id="subit-new" class="form-button" onClick="createNewEvent()">Create</button>
-					<button id="nevermind"class="form-button" onClick="disableElement('newEvent'),enableElement('punchListAll')">Nevermind.</button>
 				</div>
 <! -- End Templates -->
 
@@ -153,7 +139,7 @@
 			<!-- Overlay content -->
 			<div class="overlay-content">
 				<a href="#" onClick="genEventForm(),closeNav()">New Punch</a>
-				<a href="#" onClick="createTemplate(),closeNav()">Create Template</a>
+				<a href="#" onClick="createTemplateForm(),closeNav()">Create Template</a>
 			</div>
 		</div>
 

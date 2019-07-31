@@ -8,7 +8,7 @@ function conLog(logMessage) {
 // Clear Default Values
 function clearDefault(a){
 	if (a.defaultValue === a.value) {
-		a.value="";
+		a.value='';
 	}
 }
 
