@@ -13,7 +13,6 @@ var logging = false;
 window.onload = function() {
   initApp();
 	document.getElementById("versionInfo").innerHTML = version;
-	document.getElementById("versionInfo").innerHTML += '<br /><a href="#" onClick="isListSorted()">Sorted?</a>';
 
 /*
 	$(document).ready(function(){

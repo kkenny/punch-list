@@ -26,6 +26,7 @@
 		<link rel="stylesheet" href="css/custom.css">
 		<link rel="stylesheet" href="css/custom-medium.css">
 		<link rel="stylesheet" href="css/custom-large.css">
+		<link rel="stylesheet" href="css/menu.css">
 		<!-- scripts -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -93,16 +94,39 @@
 				</div>
 
 				<div class="container row" id="newEvent">
-					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newSubject" value="subject">
-					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newPriority" value="priority">
+					<div class="form-label">Subject: </div>
+					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newSubject" value="">
+					<div class="form-label">Priority: </div>
+					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newPriority" value="[number]">
 					<input type="hidden" id="newProgress" value="new">
-					<input onfocus="clearDefault(this)" type="text" id="timepickerCreate" class="datepicker-here u-full-width" data-timepicker="true" data-language="en" value="date">
+					<div class="form-label">Date / Time: </div>
+					<input onfocus="clearDefault(this)" type="text" id="timepickerCreate" class="datepicker-here u-full-width" data-timepicker="true" data-language="en" value="Month dd, YYYY [00-23]:[00-59]">
+					<div class="form-label">Tags: </div>
 					<input onFocus="clearDefault(this)" type="text" id="tagsCreate" class="u-full-width" value="tag1,tag2, tag3">
-					Notes:<br />
+					<div class="form-label">Notes: </div>
 					<textarea class="u-full-width" id="newNotes" value=""></textarea>
-					<input class="u-full-width" onClick="createNewEvent()" id="test" type="button" value="Create" />
-					<input class="u-full-width" onClick="disableElement('newEvent'),enableElement('punchListAll')" id="nevermind" type="button" value="Nevermind." />
+					<button id="subit-new" class="form-button" onClick="createNewEvent()">Create</button>
+					<button id="nevermind"class="form-button" onClick="disableElement('newEvent'),enableElement('punchListAll')">Nevermind.</button>
 				</div>
+
+<!-- Templates -->
+				<div class="container row" id="templatePunch">
+					<select><option value="Daily"><option value="Weekly">Weekly</option><option value="Monthly">Monthly</option><option value="Annually">Annually</option></select>
+					<div class="form-label">Subject: </div>
+					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newSubject" value="">
+					<div class="form-label">Priority: </div>
+					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newPriority" value="[number]">
+					<input type="hidden" id="newProgress" value="new">
+					<div class="form-label">Date / Time: </div>
+					<input onfocus="clearDefault(this)" type="text" id="timepickerCreate" class="datepicker-here u-full-width" data-timepicker="true" data-language="en" value="Month dd, YYYY [00-23]:[00-59]">
+					<div class="form-label">Tags: </div>
+					<input onFocus="clearDefault(this)" type="text" id="tagsCreate" class="u-full-width" value="tag1,tag2, tag3">
+					<div class="form-label">Notes: </div>
+					<textarea class="u-full-width" id="newNotes" value=""></textarea>
+					<button id="subit-new" class="form-button" onClick="createNewEvent()">Create</button>
+					<button id="nevermind"class="form-button" onClick="disableElement('newEvent'),enableElement('punchListAll')">Nevermind.</button>
+				</div>
+<! -- End Templates -->
 
 
 				<div class='u-pull-right' style="width: 200px;">
@@ -113,18 +137,29 @@
 				<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 			</div>
 
-			<div class="fixed-action-btn">
-				<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-			</div>
-
 			<div id=right class="column-right" style="float:left">
 				<div class="twelve columns events">
 					<div id="events-list"></div>
 				</div>
 			</div>
 		</div>
-		<span id="new-punch-button" class="btn-floating btn-large float" onclick="genEventForm()">
-			<span class="material-icons my-float">add</span>
+
+		<!-- The Menu overlay -->
+		<div id="myNav" class="overlay">
+
+			<!-- Button to close the overlay navigation -->
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+			<!-- Overlay content -->
+			<div class="overlay-content">
+				<a href="#" onClick="genEventForm(),closeNav()">New Punch</a>
+				<a href="#" onClick="createTemplate(),closeNav()">Create Template</a>
+			</div>
+		</div>
+
+		<!-- Use any element to open/show the overlay navigation menu -->
+		<span id="new-punch-button" class="btn-floating btn-large float" onclick="openNav()">
+			<span class="material-icons my-float" onClick="openNav()">add</span>
 		</span>
   </body>
 </html>

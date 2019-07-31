@@ -318,7 +318,7 @@ textarea {
 	margin-left: 0;
 	width: 100%;
 }
-#newEvent {
+#newEvent,#templatePunch {
 	display: none;
 }
 #editPunch {
@@ -532,4 +532,27 @@ textarea {
 	color: #000;
 	font-size: 4rem;
 	font-weight: 900;
+}
+
+.form-label {
+	margin-top: 5px;
+	font-size: 1.4rem;
+	color: #aaa;
+}
+
+.form-button {
+	border: 0px;
+	background-color: #000;
+	color:#aaa;
+	font-size: 1.4rem;
+	text-align:center;
+	width: 100%;
+}
+
+.form-button:hover {
+  background-color: #000;
+	color: #fff;
+	font-size: 1.9rem;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+	width: 100%;
 }

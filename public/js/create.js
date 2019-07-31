@@ -23,11 +23,13 @@ function newPunch(uid, subject, priority, progress, needBy, notes, tags) {
 
 // create new punch
 function genEventForm() {
+/*
 	document.getElementById("newSubject").value = "subject";
 	document.getElementById("newPriority").value = "priority";
 	document.getElementById("timepickerCreate").value = "date";
 	document.getElementById("newNotes").value = '';
 	document.getElementById("tagsCreate").value = 'tag1,tag2, tag3';
+*/
 
 	disableElement('punchListAll');
 	enableElement('newEvent');
@@ -44,11 +46,11 @@ function createNewEvent() {
 	var nDateField = document.getElementById("timepickerCreate").value;
 	var notesField = document.getElementById("newNotes").value;
 
-	if ( nDateField === 'date' ) {
+	if ( nDateField === 'Month dd, YYYY [00-23]:[00-59]' ) {
 		nDateField = '';
 	}
 
-	if ( priorityField == null || priorityField === '' || priorityField === 'priority' ) {
+	if ( priorityField == null || priorityField === '' || priorityField === '[number]' ) {
 		priorityField = 99;
 	}
 
@@ -74,4 +76,9 @@ function createNewEvent() {
 	sortList();
 //	loadPunches(window.uid);
 //	document.getElementById("newEventList").innerHTML = jsonStr;
+}
+
+function createTemplate() {
+	disableElement('punchListAll');
+	enableElement('templatePunch');
 }
