@@ -381,11 +381,9 @@ function focusTimer() {
 	startFocus();
 
 	function startFocus() {
-		console.log('starting focus');
 		l = new Date(d.setMinutes(d.getMinutes() + focusTime));
 		disableElement('punch-details-break');
 		enableElement('punch-details-content');
-		console.log(new Date(l));
 		focus = true;
 
 		window.focusTimerCountdown = setInterval(function() {
@@ -395,7 +393,6 @@ function focusTimer() {
 			hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 			days = Math.floor(distance / (1000 * 60 * 60 * 24));
 
-			console.log('distance: ' + distance);
 
 			if (days < 0)     { days = -(days + 1);
 													seconds = (seconds + 1);   }

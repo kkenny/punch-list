@@ -52,16 +52,6 @@
   font-size: 60px;
 }
 
-/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
-@media screen and (max-height: 450px) {
-  .details-overlay a {font-size: 20px}
-  .details-overlay .closebtn {
-    font-size: 40px;
-    top: 15px;
-    right: 35px;
-  }
-}
-
 .details-content-label {
 	display: inline-block;
 	width: 100px;
@@ -95,11 +85,33 @@
 	font-size: 7rem;
 	font-weight: 900;
 	font-family: sans-serif;
-  position: relative;
+  position: absolute;
   top: 15%; /* 25% from the top */
-	margin-left: auto;
+	margin-left: 15%;
 	margin-right: auto;
   width: 70%; /* 100% width */
   text-align: left; /* Centered text/links */
-  margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  margin-top: 10px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 900px) {
+  .details-overlay a {font-size: 20px}
+  .details-overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+	.punch-details-timer {
+		color: #afafaf;
+		font-size: 6rem;
+		font-weight: 900;
+		font-family: sans-serif;
+		position: absolute;
+		top: 5%; /* 25% from the top */
+		margin-left: 15%;
+		margin-right: auto;
+		width: 70%; /* 100% width */
+		text-align: left; /* Centered text/links */
+	}
 }
