@@ -402,7 +402,7 @@ function focusTimer() {
 			if (hours < 0)    { hours = (-(hours) - 1);    }
 			if (hours < 10)   { hours = ('0' + hours);     }
 			minutes++;
-//			if (minutes < 0)  { minutes = -(minutes);      }
+			if (minutes < 0)  { minutes = -(minutes);      }
 			if (minutes < 10) { minutes = ('0' + minutes); }
 //			seconds++;
 			if (seconds < 0)  { seconds = -(seconds);      }
