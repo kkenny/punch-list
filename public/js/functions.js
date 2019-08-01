@@ -330,21 +330,106 @@ function openDetails(punch) {
 		document.getElementById('details-subject').innerHTML = data.subject;
 		document.getElementById('details-progress').innerHTML = data.progress;
 		document.getElementById('details-tags').innerHTML = data.tags;
-		document.getElementById('details-notes').innerHTML = data.notes;
+//		document.getElementById('details-notes').innerHTML = data.notes;
+		document.getElementById('details-notes').innerHTML = replaceURLWithHTMLLinks(data.notes);
 		document.getElementById('punch-details-content').innerHTML += '<div id="details-needby-date-timer' + punch + '" class="details-needby-timer"></div>';
 
-		createTimer('details-needby-date-timer' + punch, data.needByDate);
+		if ( data.notes == null || data.notes === '') {
+			disableElement('details-notes-label');
+			disableElement('details-notes');
+		} else {
+			enableElement('details-notes-label');
+			enableElement('details-notes');
+		}
 
-		if ( (new Date(data.needByDate).getTime() - new Date().getTime()) <= 0 ) {
-			$( '.details-needby-timer' ).addClass( 'overdue' );
-		} else if ( ((new Date(data.needByDate).getTime() - new Date().getTime()) / 1000) <= 259200 ) {
-			$( '.details-needby-timer' ).addClass( 'duesoon' );
+		if ( data.tags == null || data.tags === '') {
+			disableElement('details-tags-label');
+		} else {
+			document.getElementById('details-tags').style.display = 'inline-block';
+		}
+
+
+		if ( data.needByDate != null || data.needByDate != '') {
+			createTimer('details-needby-date-timer' + punch, data.needByDate);
+
+			if ( (new Date(data.needByDate).getTime() - new Date().getTime()) <= 0 ) {
+				$( '.details-needby-timer' ).addClass( 'overdue' );
+			} else if ( ((new Date(data.needByDate).getTime() - new Date().getTime()) / 1000) <= 259200 ) {
+				$( '.details-needby-timer' ).addClass( 'duesoon' );
+			}
 		}
 	});
+
   document.getElementById("punch-details").style.height = "100%";
+	focusTimer();
 }
 
 function closeDetails() {
   document.getElementById("punch-details").style.height = "0%";
+	clearInterval(window.focusTimerCountdown);
 	$( '.details-needby-timer' ).remove();
+}
+
+function focusTimer() {
+	var element = 'punch-details-timer';
+	var focusTime = 25; // in minutes
+	var breakTime = 5;  // in minutes
+
+	var d = new Date();
+	var l;
+
+	startFocus();
+
+	function startFocus() {
+		console.log('starting focus');
+		l = new Date(d.setMinutes(d.getMinutes() + focusTime));
+		disableElement('punch-details-break');
+		enableElement('punch-details-content');
+		console.log(new Date(l));
+		focus = true;
+
+		window.focusTimerCountdown = setInterval(function() {
+			distance = (new Date().getTime() - l.getTime());
+			seconds = Math.floor((distance / 1000) % 60);
+			minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+			console.log('distance: ' + distance);
+
+			if (days < 0)     { days = -(days + 1);
+													seconds = (seconds + 1);   }
+			if (hours < 0)    { hours = (-(hours) - 1);    }
+			if (hours < 10)   { hours = ('0' + hours);     }
+			minutes++;
+//			if (minutes < 0)  { minutes = -(minutes);      }
+			if (minutes < 10) { minutes = ('0' + minutes); }
+//			seconds++;
+			if (seconds < 0)  { seconds = -(seconds);      }
+			if (seconds < 10) { seconds = ('0' + seconds); }
+
+			document.getElementById(element).innerHTML = minutes + ":" + seconds;
+
+			if (distance >= 0) {
+				if (focus == true) {
+					disableElement('punch-details-content');
+					enableElement('punch-details-break');
+					focus = false;
+					d = new Date();
+					l = new Date(d.setMinutes(d.getMinutes()  + breakTime));
+				} else {
+					disableElement('punch-details-break');
+					enableElement('punch-details-content');
+					focus = true;
+					d = new Date();
+					l = new Date(d.setMinutes(d.getMinutes() + focusTime));
+				}
+			}
+		}, 1000);
+	}
+}
+
+function replaceURLWithHTMLLinks(text) {
+    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
+    return text.replace(exp,"<a href='$1'>$1</a>");
 }
