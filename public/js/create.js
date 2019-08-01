@@ -30,6 +30,11 @@ function genEventForm() {
 	document.getElementById("newNotes").value = '';
 	document.getElementById("tagsCreate").value = 'tag1,tag2, tag3';
 
+	document.getElementById("newSubject").defaultValue = '';
+	document.getElementById("newPriority").defaultValue = "[number]";
+	document.getElementById("timepickerCreate").defaultValue = 'Month dd, YYYY [00-23]:[00-59]';
+	document.getElementById("newNotes").defaultValue = '';
+	document.getElementById("tagsCreate").defaultValue = 'tag1,tag2, tag3';
 
 	disableElement('punchListAll');
 	enableElement('newEvent');
@@ -162,7 +167,7 @@ function createTemplate() {
 	disableElement("newEvent");
 	enableElement("punchListAll");
 
-	sortList();
+	//sortList();
 	enableElement('punchListAll');
 	disableElement('templatePunch');
 	document.getElementById("templatePunch").innerHTML = '';

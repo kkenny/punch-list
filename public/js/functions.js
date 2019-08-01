@@ -154,6 +154,16 @@ function setStyle(reference, progress) {
 	}
 }
 
+// statCounters
+function countStats() {
+	document.getElementById('stats-total').innerHTML = $('li').length;
+	document.getElementById('stats-inprogress').innerHTML = $('.inProgress').length;
+	document.getElementById('stats-waiting').innerHTML = $('.waiting').length;
+	document.getElementById('stats-new').innerHTML = ( $('li').length - ( $('.waiting').length + $('.inProgress').length ) );
+	document.getElementById('stats-overdue').innerHTML = $('.overdue').length;
+	document.getElementById('stats-duesoon').innerHTML = $('.duesoon').length;
+}
+
 
 // Make the list sortable
 function mkSortable(){
@@ -168,14 +178,14 @@ function mkSortable(){
 			handle: '.drag_handle',
 			start: function(event, ui) {
 				//conLog($( this ).( "li" ));
-				conLog(ui.item.context.id);
-				conLog("Start Position: " + ui.item.index());
+				//console.log("Context.id: " + ui.item.context.id);
+				//console.log("Start Position: " + ui.item.index());
 			},
 			stop: function(event, ui) {
 //				setPriority(window.sortObjectUUID, ui.item.index());
 				conLog(event, ui);
 				setPriority(ui.item.context.id, ui.item.index());
-				conLog("New Position: " + ui.item.index());
+				//console.log("New Position: " + ui.item.index());
 				positionLoop();
 			}
 		});
@@ -202,7 +212,7 @@ function isListSorted() {
 }
 
 function sortList() {
-	conLog('function: sortList()');
+//	console.log('function: sortList()');
 
 	var isSorted = isListSorted();
 
@@ -214,7 +224,7 @@ function sortList() {
 		conLog(li);
 
 		li.detach().sort(function(a, b) {
-			conLog( $(a).attr('priority') );
+			//console.log("Attribute Priority: " + $(a).attr('priority'));
 			return $(a).attr('priority') - $(b).attr('priority');
 		});
 
@@ -226,7 +236,7 @@ function sortList() {
 //periodically make sure the list is sorted
 var sortTheList = setInterval(function() {
 	sortList();
-}, 3000);
+}, 1000);
 
 // Make details available
 function enableDetail(){

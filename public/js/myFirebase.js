@@ -2,6 +2,11 @@ var version = "2019.08.01-1100-alpha";
 
 var logging = false;
 
+// stats declaration...
+var cNew = 0;
+var cInProgress = 0;
+var cWaiting = 0;
+
 //var punchesRef = firebase.database().ref('users/' + userId + '/punches');
 //punchesRef.on('value', function(snapshot) {
 //  updateStarCount(postElement, snapshot.val());
@@ -33,6 +38,7 @@ function listener(uid) {
 	punchesRef.on('child_added', function(data) {
 		conLog("child Added");
 		addPunchElement(data.key, data.val());
+		countStats();
 	});
 
 	mkSortable();
@@ -42,8 +48,9 @@ function listener(uid) {
 //var looper = setInterval(function() {
 //	var punchesRef = firebase.database().ref('users/' + uid + '/punches').orderByChild('priority');
 	punchesRef.on('child_changed', function(data) {
-		conLog("Child Changed");
-		updatePunchElement(data.key, data.val());
+			conLog("Child Changed");
+			updatePunchElement(data.key, data.val());
+			countStats();
 //		deletePunchElement(data.key);
 //		addPunchElement(data.key, data.val());
 	});
@@ -51,6 +58,7 @@ function listener(uid) {
 	punchesRef.on('child_removed', function(data) {
 		conLog("child Removed");
 		deletePunchElement(data.key);
+		countStats();
 	});
 //}, 1000);
 }
