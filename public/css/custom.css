@@ -6,6 +6,29 @@ ol, ul {
 	list-style-type: none;
 }
 
+.newPunchLoad {
+	animation-name: newPunch;
+	animation-duration: 10s;
+}
+
+@keyframes newPunch {
+	0%   { box-shadow: 0px 0px 0px rgba(186, 240, 255, 0); opacity: 0; }
+	10%  { box-shadow: 0px 0px 10px; rgba(186, 240, 255, 1); opacity: 1; }
+	75%  { box-shadow: 0px 0px 10px; rgba(186, 240, 255, 0.5); }
+	100% { box-shadow: 0px 0px 0px; rgba(255, 255, 255, 0); }
+}
+
+.completePunchRemove {
+	animation-name: completePunch;
+	animation-duration: 1s;
+	opacity: 0.7;
+}
+
+@keyframes completePunch {
+	from  { opacity: 0.7; }
+	to    { opacity: 0; }
+}
+
 .progress-wrapper {
 	float: left;
 	text-align: left;

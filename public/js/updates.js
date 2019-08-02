@@ -29,6 +29,11 @@ function updatePunchElement(childKey, childData) {
 		updateElementData("subject" + childKey, childData.subject);
 		updateElementData("progress" + childKey, childData.progress);
 		updateElementData("neededby-data" + childKey, childData.needByDate);
+
+		$( '#' + childKey).addClass( 'newPunchLoad' );
+		setTimeout(function(){
+			$( '#' + childKe).removeClass( 'newPunchLoad' );
+		}, 10000);
 	}
 }
 
