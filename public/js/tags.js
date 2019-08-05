@@ -4,6 +4,7 @@ function clearTagFilter() {
 
 	$( "li" )
 		.removeClass( "hide" );
+document.getElementById('clear-tags-div').innerHTML = '';
 }
 
 function tagFilter(reference) {
@@ -15,4 +16,6 @@ function tagFilter(reference) {
 	$( "." + reference )
 		.closest( "li" )
 		.removeClass( "hide" );
+
+document.getElementById('clear-tags-div').innerHTML = "<a class='punch-default u-pull-right' href='#' onClick=clearTagFilter()>Clear Tags</a>";
 }

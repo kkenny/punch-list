@@ -32,8 +32,12 @@ function initApp() {
       var providerData = user.providerData;
 //			writeUserData(uid, displayName, email, photoURL);
 			//newPunch(uid);
-			listener(uid);
-			autoPunch();
+			if (window.showDone === true) {
+				listenerDone(uid);
+			} else {
+				listener(uid);
+				autoPunch();
+			}
 			document.getElementById('whoami').innerHTML = email;
       // [START_EXCLUDE]
       //document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';

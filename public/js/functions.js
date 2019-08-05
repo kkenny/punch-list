@@ -134,7 +134,9 @@ function setStyle(reference, progress) {
 			refClass = "waiting";
 			break;
 		case "done":
-			completePunch(reference);
+			if (window.showDone != true) {
+				completePunch(reference);
+			}
 			break;
 		default:
 			conLog("function: setStyle(" + reference + ", " + progress + "), did not match a condition. :(");
@@ -438,5 +440,9 @@ function focusTimer() {
 
 function replaceURLWithHTMLLinks(text) {
     var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
-    return text.replace(exp,"<a href='$1'>$1</a>");
+    return text.replace(exp,"<a target='_blank' href='$1'>$1</a>");
+}
+
+function deletePunch(reference) {
+	firebase.database().ref('users/' + window.uid + '/punches/' + reference).remove();
 }
