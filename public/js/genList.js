@@ -41,7 +41,6 @@ function addPunchElement(childKey, childData) {
 		genPunchListItem('<span id="start-icon' + childKey + '" class="icon-start material-icons" onClick=\'setPunchProgress("' + childKey + '", "in progress")\'>play_circle_outline</span>', '#set_status' + childKey);
 		genPunchListItem('<span id="wait-icon' + childKey + '" class="icon-wait material-icons" onClick=\'setPunchProgress("' + childKey + '", "waiting")\'>error_outline</span>', '#set_status' + childKey);
 		genPunchListItem('<span id="finish-icon' + childKey + '" class="icon-finish material-icons" onClick=\'setPunchProgress("' + childKey + '", "done")\'>check_circle_outline</span>', '#set_status' + childKey);
-		genPunchListItem('<span id="delete-icon' + childKey + '" class="icon-delete material-icons" onClick=\'deletePunch("' + childKey + '")\'>delete_forever</span>', '#set_status' + childKey);
 		genPunchListItem('<span id="edit-icon' + childKey + '" class="icon-edit material-icons" onClick=\'editPunch("' + childKey + '")\'>edit</span>', '#set_status' + childKey);
 
 		setStyle(childKey,childData.progress);
@@ -107,9 +106,8 @@ function addPunchElementDone(childKey, childData) {
 		genPunchListItem('<div id="set_status' + childKey + '" class="status-icons"></div>', '#' + childKey);
 		genPunchListItem('<span id="start-icon' + childKey + '" class="icon-start material-icons" onClick=\'setPunchProgress("' + childKey + '", "in progress")\'>play_circle_outline</span>', '#set_status' + childKey);
 		genPunchListItem('<span id="wait-icon' + childKey + '" class="icon-wait material-icons" onClick=\'setPunchProgress("' + childKey + '", "waiting")\'>error_outline</span>', '#set_status' + childKey);
-		genPunchListItem('<span id="finish-icon' + childKey + '" class="icon-finish material-icons" onClick=\'setPunchProgress("' + childKey + '", "done")\'>check_circle_outline</span>', '#set_status' + childKey);
-		genPunchListItem('<span id="delete-icon' + childKey + '" class="icon-delete material-icons" onClick=\'deletePunch("' + childKey + '")\'>delete_forever</span>', '#set_status' + childKey);
 		genPunchListItem('<span id="edit-icon' + childKey + '" class="icon-edit material-icons" onClick=\'editPunch("' + childKey + '")\'>edit</span>', '#set_status' + childKey);
+		genPunchListItem('<span id="delete-icon' + childKey + '" class="icon-delete material-icons" onClick=\'deletePunch("' + childKey + '")\'>delete_forever</span>', '#set_status' + childKey);
 
 		setStyle(childKey,childData.progress);
 

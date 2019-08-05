@@ -38,6 +38,7 @@ function genEventForm() {
 
 	disableElement('punchListAll');
 	enableElement('newEvent');
+	$( '#new-punch-button' ).addClass( 'hide' );
 
 }
 
@@ -102,7 +103,7 @@ function createTemplateForm() {
 	html += '<div class="form-label">Notes: </div>';
 	html += '<textarea class="u-full-width" id="templateNotes" value=""></textarea>';
 	html += '<button id="subit-template" class="form-button" onClick="createTemplate()">Create</button>';
-	html += '<button id="nevermind"class="form-button" onClick="disableElement(templatePunch),enableElement(punchListAll)">Nevermind.</button>';
+	html += '<button id="nevermind"class="form-button" onClick="disableElement(\"templatePunch\"),enableElement(\"punchListAll\")">Nevermind.</button>';
 
 	document.getElementById("templatePunch").innerHTML = html;
 
@@ -170,6 +171,7 @@ function createTemplate() {
 	//sortList();
 	enableElement('punchListAll');
 	disableElement('templatePunch');
+//	$( '#new-punch-button' ).removeClass( 'hide' );
 	document.getElementById("templatePunch").innerHTML = '';
 }
 

@@ -1,4 +1,4 @@
-var version = "2019.08.01-1100-alpha";
+var version = "2019.08.05-1123-alpha";
 window.showDone = true;
 var logging = false;
 

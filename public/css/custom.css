@@ -526,9 +526,16 @@ textarea {
 	text-align: left;
 }
 .truncate{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; float:left;}
-.icon-start, .icon-wait, .icon-finish, .icon-edit {
+.icon-start, .icon-wait, .icon-finish, .icon-edit, .icon-delete {
 	font-size: 40px;
+	margin-left: 8px;
 }
+
+.icon-start:hover, .icon-wait:hover, .icon-finish:hover, .icon-edit:hover, .icon-delete:hover {
+	color: orange;
+	font-weight: 900;
+}
+
 .float{
 	position:fixed;
 	width:60px;
