@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!--		<meta name="google-signin-client_id" content="999467953896-tcsf2i6f8rmvb9o8mpsprv43rfr9k8bq.apps.googleusercontent.com"> -->
+		<meta name="google-signin-client_id" content="999467953896-mrvotds9kf6fv0f9gnf4jdtvabf2s805.apps.googleusercontent.com">
+
+		<meta name="google-signin-cookiepolicy" content="single_host_origin">
+		<meta name="google-signin-scope" content="profile email">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Punch List</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/datepicker.min.css">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.css" />
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/skeleton.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="css/magic.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/custom-medium.css">
+		<link rel="stylesheet" href="css/custom-large.css">
+		<link rel="stylesheet" href="css/menu.css">
+		<link rel="stylesheet" href="css/punch-details.css">
+		<!-- scripts -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+		<script src="/__/firebase/6.2.4/firebase-app.js"></script>
+		<script src="/__/firebase/6.2.4/firebase-auth.js"></script>
+		<script src="/__/firebase/6.2.4/firebase-database.js"></script>
+		<script src="/__/firebase/6.2.4/firebase-messaging.js"></script>
+		<script src="/__/firebase/6.2.4/firebase-storage.js"></script>
+		<script src="/__/firebase/init.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script src="js/gSignIn.js"></script>
+		<script src="js/functions.js"></script>
+		<script src="js/create.js"></script>
+		<script src="js/editPunch.js"></script>
+		<script src="js/genList.js"></script>
+		<script src="js/menus.js"></script>
+		<script src="js/priority.js"></script>
+		<script src="js/progress.js"></script>
+		<script src="js/tags.js"></script>
+		<script src="js/updates.js"></script>
+		<script src="js/myFirebase-done.js"></script>
+		<script src="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.js"></script>
+		<script src="js/datepicker.min.js"></script>
+		<script src="js/i18n/datepicker.en.js"></script>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
+	</head>
+
+
+	<body>
+		<div id="firebaseui-auth-container"></div>
+
+
+		<div id=container>
+			<div id=left class="column-left">
+				<div class="eight columns"> &nbsp; </div>
+				<div class="four columns subject" style="border-bottom: 2px solid #fff">STATS</div>
+				<div class="eight columns"> &nbsp; </div>
+				<div id=stats class="four columns"></div>
+			</div>
+
+			<div id=middle class="column-middle">
+<!--		<div class="dropdown-menu" id=mainMenuWrapper>
+			<i class="material-icons top dropbtn main-menu" onclick=mainMenuDrop() id=mainMenu>menu</i>
+			<div id=mainMenuDropdown class="dropdown-content punch-default">
+				<a href="#" onclick="genEventForm()">New Punch Item</a>
+				<a href="#" onclick="genDaily()">Generate Daily Punches</a>
+				<a href="#" onclick="genWeekly()">Generate Weekly Punches</a>
+			</div>
+		</div>
+-->
+				<div id="editPunch" class="listWrapper"></div>
+				<div class="listWrapper" id="punchListAll">
+					<div id="punchListInProgressWrapper" class="listWrapper">
+						<!-- the list -->
+						<span class="punchListHeader">Punches</span>
+						<div id="punchListBacklog">
+							<ol id="sortable" class="punchListBacklog"></ol>
+						</div>
+						<!-- end the list -->
+					</div>
+				</div>
+
+				<div class="container row" id="newEvent">
+					<div class="form-label">Subject: </div>
+					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newSubject" value="">
+					<div class="form-label">Priority: </div>
+					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newPriority" value="">
+					<input type="hidden" id="newProgress" value="new">
+					<div class="form-label">Date / Time: </div>
+					<input onfocus="clearDefault(this)" type="text" id="timepickerCreate" class="datepicker-here u-full-width" data-timepicker="true" data-language="en" value="">
+					<div class="form-label">Tags: </div>
+					<input onFocus="clearDefault(this)" type="text" id="tagsCreate" class="u-full-width" value="">
+					<div class="form-label">Notes: </div>
+					<textarea class="u-full-width" id="newNotes" value=""></textarea>
+					<button id="subit-new" class="form-button" onClick="createNewEvent()">Create</button>
+					<button id="nevermind"class="form-button" onClick="disableElement('newEvent'),enableElement('punchListAll')">Nevermind.</button>
+				</div>
+
+<!-- Templates -->
+				<div class="container row" id="templatePunch">
+				</div>
+<! -- End Templates -->
+
+
+				<div class='u-pull-right' style="width: 200px;">
+					<div id='clear-tags-div' style="width: 100%;" class='punch-default u-pull-right'></div>
+					<div style="width: 100%;" class='punch-default u-pull-right' id=versionInfo></div>
+				</div>
+				<div id="whoami"></div>
+				<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+			</div>
+
+			<div id=right class="column-right" style="float:left">
+				<div class="twelve columns events">
+					<div id="events-list"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- The Details overlay -->
+		<div id='punch-details' class='details-overlay'>
+			<a href="javascript:void(0)" class="closebtn" onclick="closeDetails()">&times;</a>
+			<div id='punch-details-timer' class='punch-details-timer'></div>
+			<div id='punch-details-content' class="details-overlay-content">
+				<div><span id='details-subject'></span></div>
+				<div><div class="details-content-label">Progress: </div><span id='details-progress'></span></div>
+				<div><div id='details-tags-label' class="details-content-label">Tags: </div><span id='details-tags'></span></div>
+				<div><div id='details-notes-label' class="details-content-label">Notes: </div><div id='details-notes' class='details-content-notes'></div></div>
+			</div>
+			<div id='punch-details-break' class="details-overlay-content">
+				<center>TAKE A BREAK</center>
+			</div>
+		</div>
+
+
+		<!-- The Menu overlay -->
+		<div id="myNav" class="overlay">
+
+			<!-- Button to close the overlay navigation -->
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+			<!-- Overlay content -->
+			<div class="overlay-content">
+				<a href="#" onClick="genEventForm(),closeNav()">New Punch</a>
+				<a href="#" onClick="createTemplateForm(),closeNav()">Create Template</a>
+				<hr>
+				<div class='stats'>Stats</div>
+				<div class='stats-row'><div class='stats-label bottom-border'>New</div><div id='stats-new' class='stats-content bottom-border'></div></div>
+				<div class='stats-row'><div class='stats-label bottom-border'>In Progress</div><div id='stats-inprogress' class='stats-content bottom-border'></div></div>
+				<div class='stats-row'><div class='stats-label bottom-border'>Waiting</div><div id='stats-waiting' class='stats-content bottom-border'></div></div>
+				<div class='stats-row'><div class='stats-label bottom-border'>Total</div><div id='stats-total' class='stats-content bottom-border'></div></div>
+				<div class='stats-row'><div class='stats-label bottom-border'>Due Soon</div><div id='stats-duesoon' class='stats-content bottom-border'></div></div>
+				<div class='stats-row'><div class='stats-label'>Overdue</div><div id='stats-overdue' class='stats-content'></div></div>
+			</div>
+		</div>
+
+		<!-- Use any element to open/show the overlay navigation menu -->
+		<span id="new-punch-button" class="btn-floating btn-large float" onclick="openNav()">
+			<span class="material-icons my-float" onClick="openNav()">add</span>
+		</span>
+  </body>
+</html>
