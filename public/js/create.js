@@ -23,7 +23,6 @@ function newPunch(uid, subject, priority, progress, needBy, notes, tags) {
 
 // create new punch
 function genEventForm() {
-	closeNav();
 
 	document.getElementById("newSubject").value = '';
 	document.getElementById("newPriority").value = "[number]";
@@ -37,9 +36,7 @@ function genEventForm() {
 	document.getElementById("newNotes").defaultValue = '';
 	document.getElementById("tagsCreate").defaultValue = 'tag1,tag2, tag3';
 
-	disableElement('punchListAll');
-	enableElement('newEvent');
-	hideMenu();
+  //document.getElementById("new-event-wrapper").style.height = "100%";
 
 }
 
@@ -75,13 +72,10 @@ function createNewEvent() {
 
 	newPunch(window.uid, subjectField, parseInt(priorityField), progressField, nDateField, notesField, newTags);
 
-	disableElement("newEvent");
-	enableElement("punchListAll");
+	closeDrawer('new-event-wrapper');
 	showMenu();
 
 	sortList();
-//	loadPunches(window.uid);
-//	document.getElementById("newEventList").innerHTML = jsonStr;
 }
 
 function createTemplateForm() {
@@ -107,12 +101,12 @@ function createTemplateForm() {
 	html += '<div class="form-label">Notes: </div>';
 	html += '<textarea class="u-full-width" id="templateNotes" value=""></textarea>';
 	html += '<button id="subit-template" class="form-button" onClick="createTemplate()">Create</button>';
-	html += '<button id="nevermind"class="form-button" onClick="disableElement(\'templatePunch\'),enableElement(\'punchListAll\'),showMenu()">Nevermind.</button>';
+	html += '<button id="nevermind" class="form-button nevermind" onClick="showMenu()">Nevermind.</button>';
 
+//	nevermindButton();
 	document.getElementById("templatePunch").innerHTML = html;
 
-	disableElement("punchListAll");
-	enableElement("templatePunch");
+//  document.getElementById("template-wrapper").style.height = "100%";
 }
 
 function setCadenceForm(s) {
@@ -169,12 +163,14 @@ function createTemplate() {
 
 	newPunchTemplate(window.uid, subjectField, parseInt(priorityField), progressField, nDateField, notesField, newTags, cadence);
 
-	disableElement("newEvent");
-	enableElement("punchListAll");
+	//disableElement("newEvent");
+  document.getElementById("new-event-wrapper").style.height = "0%";
+//	enableElement("punchListAll");
 
 	//sortList();
 	showMenu();
-	disableElement('templatePunch');
+//	disableElement('templatePunch');
+	closeDrawer("template-wrapper");
 	document.getElementById("templatePunch").innerHTML = '';
 }
 

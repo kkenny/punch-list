@@ -345,11 +345,8 @@ textarea {
 	margin-left: 0;
 	width: 100%;
 }
-#newEvent,#templatePunch {
-	display: none;
-}
-#editPunch {
-	display: none;
+#newEvent,#templatePunch,#editPunch {
+/*	display: none; */
 }
 .punchlist {
 	border-bottom: 1px solid #eee;

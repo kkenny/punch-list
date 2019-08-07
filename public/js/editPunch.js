@@ -1,7 +1,8 @@
 // edit punch
 function editPunch(uuid) {
-	disableElement("punchListAll");
-	enableElement("editPunch");
+//	disableElement("punchListAll");
+//	enableElement("editPunch");
+	openDrawer('edit-event-wrapper');
 
 	var punchRef = firebase.database().ref('users/' + uid + '/punches/' + uuid);
 
@@ -27,12 +28,14 @@ function editPunch(uuid) {
 	html += '</div>';
 	html += '<div class="three columns">Add Tag:</div><div class="nine columns"><input type="text" id="editTags" value="' + tags + '"></div>';
 	html += '<div class="three columns">Notes: </div><div class="nine columns"><textarea class="edit-text-box" id="editNotes">' + notes + '</textarea></div>';
-	html += '<button onClick=submitEditPunch("' + uuid + '")>Update</button>';
-	html += '<button onClick=\'disableElement("editPunch"),enableElement("punchListAll")\'>Close</button>';
+	html += '<button onClick=submitEditPunch("' + uuid + '") class="form-button">Update</button>';
+	html += '<button onClick=\'closeDrawer("edit-event-wrapper")\' class="form-button">Close</button>';
 	html += '</div>';
 
 	document.getElementById("editPunch").innerHTML = html;
 	});
+
+	watchFunctions();
 
 }
 
@@ -76,6 +79,6 @@ function submitEditPunch(uuid) {
 	var updates = {};
 	updates['users/' + uid + '/punches/' + uuid] = punchData;
 	firebase.database().ref().update(updates);
-	disableElement('editPunch');
-	enableElement('punchListAll');
+	closeDrawer('edit-event-wrapper');
+//	enableElement('punchListAll');
 }

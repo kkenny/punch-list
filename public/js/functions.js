@@ -1,4 +1,5 @@
 // shorten calls to conLog
+var logging = false;
 function conLog(logMessage) {
 	if ( logging === true ) {
 		conLog(logMessage);
@@ -465,3 +466,51 @@ function showMenu() {
 function hideMenu() {
 	$( '#new-punch-button' ).addClass( 'hide' );
 }
+
+//function nevermindButton(){
+//$( ".form-overlay" ).on('child_changed', function() {
+
+function openDrawer(ref) {
+	$( '#' + ref ).css( 'height', '100%' );
+}
+
+function closeDrawer(ref) {
+	$( '#' + ref ).css( 'height', '0%' );
+}
+
+function watchFunctions() {
+	$(function() {
+		$( ".nevermind" ).on( "click", function() {
+			$( this ).closest( '.form-overlay' ).css( 'height', '0%' );
+			showMenu();
+			watchFunctions();
+		});
+
+		$( ".menu-button" ).on( "click", function() {
+			openNav();
+			watchFunctions();
+		});
+
+		$( "#link-new-punch" ).on( "click", function() {
+			closeNav();
+			genEventForm();
+			openDrawer('new-event-wrapper');
+			hideMenu();
+			watchFunctions();
+		});
+
+		$( "#link-new-template" ).on( "click", function() {
+			closeNav();
+			createTemplateForm();
+			openDrawer('template-wrapper');
+			hideMenu();
+			watchFunctions();
+		});
+	});
+}
+
+/*$(function() {
+	$("span").style.on('change',function() {
+		console.log("clicked!");
+	});
+});*/

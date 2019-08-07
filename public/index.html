@@ -28,6 +28,7 @@
 		<link rel="stylesheet" href="css/custom-large.css">
 		<link rel="stylesheet" href="css/menu.css">
 		<link rel="stylesheet" href="css/punch-details.css">
+		<link rel="stylesheet" href="css/form-overlay.css">
 		<!-- scripts -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -82,7 +83,9 @@
 			</div>
 		</div>
 -->
-				<div id="editPunch" class="listWrapper"></div>
+				<span id="edit-event-wrapper" class="form-overlay">
+					<div id="editPunch" class="listWrapper form-content"></div>
+				</span>
 				<div class="listWrapper" id="punchListAll">
 					<div id="punchListInProgressWrapper" class="listWrapper">
 						<!-- the list -->
@@ -97,7 +100,8 @@
 					</div>
 				</div>
 
-				<div class="container row" id="newEvent">
+				<span id="new-event-wrapper" class="form-overlay">
+				<div class="container row form-content" id="newEvent">
 					<div class="form-label">Subject: </div>
 					<input onfocus="clearDefault(this)" class="u-full-width" type="text" id="newSubject" value="">
 					<div class="form-label">Priority: </div>
@@ -110,12 +114,14 @@
 					<div class="form-label">Notes: </div>
 					<textarea class="u-full-width" id="newNotes" value=""></textarea>
 					<button id="subit-new" class="form-button" onClick="createNewEvent()">Create</button>
-					<button id="nevermind"class="form-button" onClick="disableElement('newEvent'),enableElement('punchListAll'),showMenu()">Nevermind.</button>
+					<button id="nevermind" class="form-button nevermind">Nevermind.</button>
 				</div>
+				</span>
 
 <!-- Templates -->
-				<div class="container row" id="templatePunch">
-				</div>
+				<span id="template-wrapper" class="form-overlay">
+					<div class="container row form-content" id="templatePunch"></div>
+				</span>
 <! -- End Templates -->
 
 
@@ -158,8 +164,8 @@
 
 			<!-- Overlay content -->
 			<div class="overlay-content">
-				<a href="#" onClick="genEventForm()">New Punch</a>
-				<a href="#" onClick="createTemplateForm()">Create Template</a>
+				<a id='link-new-punch' href="#">New Punch</a>
+				<a id='link-new-template' href="#" onClick="createTemplateForm()">Create Template</a>
 				<hr>
 				<div class='stats'>Stats</div>
 				<div class='stats-row'><div class='stats-label bottom-border'>New</div><div id='stats-new' class='stats-content bottom-border'></div></div>
@@ -172,8 +178,8 @@
 		</div>
 
 		<!-- Use any element to open/show the overlay navigation menu -->
-		<span id="new-punch-button" class="btn-floating btn-large float" onclick="openNav()">
-			<span class="material-icons my-float" onClick="openNav()">add</span>
+		<span id="new-punch-button" class="btn-floating btn-large float menu-button">
+			<span class="material-icons my-float menu-button">add</span>
 		</span>
   </body>
 </html>

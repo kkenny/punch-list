@@ -1,7 +1,5 @@
 var version = "2019.08.06-1222-alpha";
 
-var logging = false;
-
 // stats declaration...
 var cNew = 0;
 var cInProgress = 0;
