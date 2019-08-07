@@ -62,7 +62,7 @@ function addPunchElement(childKey, childData) {
 
 		setTimeout(function(){
 			$('#' + childKey).removeClass('newPunchLoad');
-		}, 10000);
+		}, 5000);
 
 	}
 
@@ -128,7 +128,7 @@ function addPunchElementDone(childKey, childData) {
 
 		setTimeout(function(){
 			$('#' + childKey).removeClass('newPunchLoad');
-		}, 10000);
+		}, 5000);
 
 	}
 

@@ -29,35 +29,45 @@ function getWeekNumber(d) {
 
 // /user/uid/autopunch/daily/YYYY-mm-dd = [true|false]
 
+function getRndInteger(min, max) {
+	var r = Math.floor(Math.random() * (max - min + 1) ) + min;
+
+	conLog("getRndInteger: " + r);
+	return r;
+}
+
 var cycleAutoPunch = setInterval(function() {
 	autoPunch();
-},60000);
+},getRndInteger(60000,120000) );
 
 function autoPunch() {
 
-	var d = new Date();
-	var today = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
-	var week = getWeekNumber(d);
+	setTimeout(function() {
+		conLog("[" + new Date() + "] - autoPunch");
+		var d = new Date();
+		var today = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+		var week = getWeekNumber(d);
 
-	firebase.database().ref('users/' + window.uid + '/autopunch/daily/created').once('value').then(function(snapshot) {
-		var dayRef = snapshot.val();
-		if ( dayRef != today ) {
-			genDaily();
-			firebase.database().ref('users/' + window.uid + '/autopunch/daily').update({
-				created: today
-			});
-		}
-	});
+		firebase.database().ref('users/' + window.uid + '/autopunch/daily/created').once('value').then(function(snapshot) {
+			var dayRef = snapshot.val();
+			if ( dayRef != today ) {
+				genDaily();
+				firebase.database().ref('users/' + window.uid + '/autopunch/daily').update({
+					created: today
+				});
+			}
+		});
 
-	firebase.database().ref('users/' + window.uid + '/autopunch/weekly/created').once('value').then(function(snapshot) {
-		var weekRef = snapshot.val();
-		if ( weekRef != week ) {
-			genWeekly();
-			firebase.database().ref('users/' + window.uid + '/autopunch/weekly').update({
-				created: week
-			});
-		}
-	});
+		firebase.database().ref('users/' + window.uid + '/autopunch/weekly/created').once('value').then(function(snapshot) {
+			var weekRef = snapshot.val();
+			if ( weekRef != week ) {
+				genWeekly();
+				firebase.database().ref('users/' + window.uid + '/autopunch/weekly').update({
+					created: week
+				});
+			}
+		});
+	},getRndInteger(getRndInteger(0,5000),getRndInteger(10000,55000)) );
 
 }
 // Generate Daily Punches function
@@ -180,14 +190,14 @@ function mkSortable(){
 			handle: '.drag_handle',
 			start: function(event, ui) {
 				//conLog($( this ).( "li" ));
-				//console.log("Context.id: " + ui.item.context.id);
-				//console.log("Start Position: " + ui.item.index());
+				//conLog("Context.id: " + ui.item.context.id);
+				//conLog("Start Position: " + ui.item.index());
 			},
 			stop: function(event, ui) {
 //				setPriority(window.sortObjectUUID, ui.item.index());
 				conLog(event, ui);
 				setPriority(ui.item.context.id, ui.item.index());
-				//console.log("New Position: " + ui.item.index());
+				//conLog("New Position: " + ui.item.index());
 				positionLoop();
 			}
 		});
@@ -208,13 +218,13 @@ function isListSorted() {
 		}
 	});
 
-	//console.log("Sorted: " + sorted);
+	//conLog("Sorted: " + sorted);
 
 	return sorted;
 }
 
 function sortList() {
-//	console.log('function: sortList()');
+//	conLog('function: sortList()');
 
 	var isSorted = isListSorted();
 
@@ -226,7 +236,7 @@ function sortList() {
 		conLog(li);
 
 		li.detach().sort(function(a, b) {
-			//console.log("Attribute Priority: " + $(a).attr('priority'));
+			//conLog("Attribute Priority: " + $(a).attr('priority'));
 			return $(a).attr('priority') - $(b).attr('priority');
 		});
 
@@ -361,7 +371,8 @@ function openDetails(punch) {
 		}
 
 
-		if ( data.needByDate != null || data.needByDate != '') {
+		if ( data.needByDate != null && data.needByDate != '' && data.needByDate != undefined) {
+			conLog("nbd: " + data.needByDate);
 			createTimer('details-needby-date-timer' + punch, data.needByDate);
 
 			if ( (new Date(data.needByDate).getTime() - new Date().getTime()) <= 0 ) {
@@ -445,4 +456,12 @@ function replaceURLWithHTMLLinks(text) {
 
 function deletePunch(reference) {
 	firebase.database().ref('users/' + window.uid + '/punches/' + reference).remove();
+}
+
+function showMenu() {
+	$( '#new-punch-button' ).removeClass( 'hide' );
+}
+
+function hideMenu() {
+	$( '#new-punch-button' ).addClass( 'hide' );
 }

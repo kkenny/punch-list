@@ -23,6 +23,7 @@ function newPunch(uid, subject, priority, progress, needBy, notes, tags) {
 
 // create new punch
 function genEventForm() {
+	closeNav();
 
 	document.getElementById("newSubject").value = '';
 	document.getElementById("newPriority").value = "[number]";
@@ -38,7 +39,7 @@ function genEventForm() {
 
 	disableElement('punchListAll');
 	enableElement('newEvent');
-	$( '#new-punch-button' ).addClass( 'hide' );
+	hideMenu();
 
 }
 
@@ -76,6 +77,7 @@ function createNewEvent() {
 
 	disableElement("newEvent");
 	enableElement("punchListAll");
+	showMenu();
 
 	sortList();
 //	loadPunches(window.uid);
@@ -83,6 +85,8 @@ function createNewEvent() {
 }
 
 function createTemplateForm() {
+	closeNav();
+	hideMenu();
 	var html = '';
 
 	html += '<div class="form-label">Cadence</div>';
@@ -103,7 +107,7 @@ function createTemplateForm() {
 	html += '<div class="form-label">Notes: </div>';
 	html += '<textarea class="u-full-width" id="templateNotes" value=""></textarea>';
 	html += '<button id="subit-template" class="form-button" onClick="createTemplate()">Create</button>';
-	html += '<button id="nevermind"class="form-button" onClick="disableElement(\"templatePunch\"),enableElement(\"punchListAll\")">Nevermind.</button>';
+	html += '<button id="nevermind"class="form-button" onClick="disableElement(\'templatePunch\'),enableElement(\'punchListAll\'),showMenu()">Nevermind.</button>';
 
 	document.getElementById("templatePunch").innerHTML = html;
 
@@ -169,9 +173,8 @@ function createTemplate() {
 	enableElement("punchListAll");
 
 	//sortList();
-	enableElement('punchListAll');
+	showMenu();
 	disableElement('templatePunch');
-//	$( '#new-punch-button' ).removeClass( 'hide' );
 	document.getElementById("templatePunch").innerHTML = '';
 }
 

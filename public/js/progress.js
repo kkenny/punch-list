@@ -24,7 +24,7 @@ function completePunch(reference) {
 	$('#' + reference).addClass('completePunchRemove');
 	setTimeout(function(){
 		deletePunchElement(reference);
-	},4000);
+	},2500);
 
 }
 

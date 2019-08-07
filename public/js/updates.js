@@ -33,7 +33,7 @@ function updatePunchElement(childKey, childData) {
 		$( '#' + childKey).addClass( 'newPunchLoad' );
 		setTimeout(function(){
 			$( '#' + childKey).removeClass( 'newPunchLoad' );
-		}, 5000);
+		}, 3000);
 	}
 }
 

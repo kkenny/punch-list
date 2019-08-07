@@ -284,10 +284,14 @@ i {
 	min-height: 200px;
 	width: 100%;
 }
-textarea {
+textarea, input[type="text"] {
+	font-family: sans-serif;
 	background: #111;
 	border: 1px solid #999;
-	color: lime;
+	color: #f1f1f1;
+}
+
+textarea {
 	height:50%;
 	width:80%;
 }
@@ -623,3 +627,4 @@ textarea {
 .bottom-border {
 	border-bottom: 1px solid #fff;
 }
+

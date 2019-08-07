@@ -110,7 +110,7 @@
 					<div class="form-label">Notes: </div>
 					<textarea class="u-full-width" id="newNotes" value=""></textarea>
 					<button id="subit-new" class="form-button" onClick="createNewEvent()">Create</button>
-					<button id="nevermind"class="form-button" onClick="disableElement('newEvent'),enableElement('punchListAll')">Nevermind.</button>
+					<button id="nevermind"class="form-button" onClick="disableElement('newEvent'),enableElement('punchListAll'),showMenu()">Nevermind.</button>
 				</div>
 
 <!-- Templates -->
@@ -158,8 +158,8 @@
 
 			<!-- Overlay content -->
 			<div class="overlay-content">
-				<a href="#" onClick="genEventForm(),closeNav()">New Punch</a>
-				<a href="#" onClick="createTemplateForm(),closeNav()">Create Template</a>
+				<a href="#" onClick="genEventForm()">New Punch</a>
+				<a href="#" onClick="createTemplateForm()">Create Template</a>
 				<hr>
 				<div class='stats'>Stats</div>
 				<div class='stats-row'><div class='stats-label bottom-border'>New</div><div id='stats-new' class='stats-content bottom-border'></div></div>
