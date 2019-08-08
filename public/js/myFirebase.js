@@ -59,5 +59,6 @@ function listener(uid) {
 		countStats();
 	});
 //}, 1000);
+	watchFunctions();
 }
 
