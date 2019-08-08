@@ -1,4 +1,4 @@
-var version = "2019.08.06-1222-alpha";
+var version = "2019.08.08-1408-alpha";
 
 // stats declaration...
 var cNew = 0;

@@ -120,16 +120,16 @@ function setCadenceForm(s) {
 			break;
 		case "weekly":
 			document.getElementById('label-needby').innerHTML = 'Need By Day of Week:';
-			document.getElementById('timepickerTemplate').defaultValue = '[1-7]';
-			document.getElementById('timepickerTemplate').value = '[1-7]';
+			document.getElementById('timepickerTemplate').defaultValue = '[1-7],[hh:mm]  ie: For every Tuesday at 2:25pm - 2,14:25';
+			document.getElementById('timepickerTemplate').value = '[1-7],[hh:mm]  ie: For every Tuesday at 2:25pm - 2,14:25';
 			break;
 		case "monthly":
 			document.getElementById('label-needby').innerHTML = 'Need By Day of Month:';
-			document.getElementById('timepickerTemplate').defaultValue = '[1-31]';
-			document.getElementById('timepickerTemplate').value = '[1-31]';
+			document.getElementById('timepickerTemplate').defaultValue = '[1-31],[hh:mm]  ie: For the 20th day of the month at 3:15pm - 20,15:15';
+			document.getElementById('timepickerTemplate').value = '[1-31],[hh:mm]  ie: For the 20th day of the month at 3:15pm - 20,15:15';
 			break;
 		case "annually":
-			document.getElementById('label-needby').innerHTML = 'Need By Date (Each Year):';
+			document.getElementById('label-needby').innerHTML = 'Need By Date (Each Year): (Currently Not Implemented)';
 			document.getElementById('timepickerTemplate').defaultValue = 'Month dd, YYYY [00-23]:[00-59]';
 			document.getElementById('timepickerTemplate').value = 'Month dd, YYYY [00-23]:[00-59]';
 			break;

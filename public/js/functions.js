@@ -24,7 +24,7 @@ function getWeekNumber(d) {
     // Calculate full weeks to nearest Thursday
     var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
     // Return array of year and week number
-    return d.getUTCFullYear() + '-' +weekNo;
+    return d.getUTCFullYear() + '-' + weekNo;
 }
 // Check if daily punches have been created?
 
@@ -48,6 +48,7 @@ function autoPunch() {
 		var d = new Date();
 		var today = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
 		var week = getWeekNumber(d);
+		var month = d.getFullYear() + '-' + d.getMonth();
 
 		firebase.database().ref('users/' + window.uid + '/autopunch/daily/created').once('value').then(function(snapshot) {
 			var dayRef = snapshot.val();
@@ -68,58 +69,120 @@ function autoPunch() {
 				});
 			}
 		});
+
+		firebase.database().ref('users/' + window.uid + '/autopunch/monthly/created').once('value').then(function(snapshot) {
+			var monthRef = snapshot.val();
+			if ( monthRef != month ) {
+				genMonthly();
+				firebase.database().ref('users/' + window.uid + '/autopunch/monthly').update({
+					created: month
+				});
+			}
+		});
 	},getRndInteger(getRndInteger(0,5000),getRndInteger(10000,55000)) );
 
 }
-// Generate Daily Punches function
+
 function genDaily() {
-	conLog("function: genDaily()");
+	console.log("Generating Daily");
+	var ref = firebase.database().ref('users/' + window.uid + '/punchTemplates/daily');
+	ref.once('value', function(snapshot) {
+		snapshot.forEach(function(childSnapshot) {
+			var data = childSnapshot.val();
+			console.log(data);
+			var subject = data.subject,
+					priority = data.priority,
+					progress = "new",
+					needByDate = data.needByDate,
+					notes = data.notes,
+					tags = data.tags,
+					t = needByDate.split(':'),
+					d = new Date();
+			d.setHours(t[0]);
+			d.setMinutes(t[1]);
+			d.setSeconds(0);
 
-	var daily = [ "Check Workday", "Check Expenses", "Check Change Cases", "Check TD's", "Check at-mentions" ];
-	conLog(daily[1]);
-	priority = parseInt("3");
+			var needBy = d;
 
-	var d = new Date();
-	var needBy = d.setHours(17,0,0);
+			console.log("subject: " + subject);
+			console.log("priority: " + priority);
+			console.log("progress: " + progress);
+			console.log("needby: " + needBy);
+			console.log("notes: " + notes);
+			console.log("tags: " + tags);
 
-	var newTag = "work,daily";
-	var stripLeadingSpace = newTag.replace(/, /g, ',');
-	var noSpaces = stripLeadingSpace.replace(/ /g, '_');
-	var newTags = noSpaces.split(",");
-
-	for (x = 0; x < daily.length; x++) {
-		newPunch(window.uid, daily[x], priority, "new", needBy, "", newTags);
-	}
-
-
-	sortList();
+			newPunch(window.uid, subject, priority, progress, needBy, notes, tags);
+		});
+	});
 }
 
-// Generate Weekly Punches function
 function genWeekly() {
-	conLog("function: genWeekly()");
+	console.log("Generating Weekly");
+	var ref = firebase.database().ref('users/' + window.uid + '/punchTemplates/weekly');
+	ref.once('value', function(snapshot) {
+		snapshot.forEach(function(childSnapshot) {
+			var data = childSnapshot.val();
+			console.log(data);
+			var subject = data.subject,
+					priority = data.priority,
+					progress = "new",
+					needByDate = data.needByDate,
+					notes = data.notes,
+					tags = data.tags,
+					t = needByDate.split(':'),
+					d = new Date();
+			d.setDate(d.getDate() + (parseInt(needByDate.split(',')[0]) + 7 - d.getDay()) % 7);
+			d.setHours(parseInt(needByDate.split(',')[1].split(':')[0]));
+			d.setMinutes(parseInt(needByDate.split(':')[1]));
+			d.setSeconds(0);
 
-//get next monday:
-	// var d = new Date();
-	// d.setDate(d.getDate() + (1 + 7 - d.getDay()) % 7);
-	// conLog(d)
+			var needBy = d;
 
-//	};
-	var weekly = [ "Update ORB Notes", "Prep Weekly Meeting", "Review Epics on Release" ];
-	var priority = parseInt("5");
-	var newTag = "work,weekly";
-	var stripLeadingSpace = newTag.replace(/, /g, ',');
-	var noSpaces = stripLeadingSpace.replace(/ /g, '_');
-	var newTags = noSpaces.split(",");
-	var needBy = '';
+			console.log("subject: " + subject);
+			console.log("priority: " + priority);
+			console.log("progress: " + progress);
+			console.log("needby: " + needBy);
+			console.log("notes: " + notes);
+			console.log("tags: " + tags);
 
-	for (x = 0; x < weekly.length; x++) {
-		newPunch(window.uid, weekly[x], priority, "new", needBy, "", newTags);
-	}
-
-	sortList();
+			newPunch(window.uid, subject, priority, progress, needBy, notes, tags);
+		});
+	});
 }
 
+function genMonthly() {
+	console.log("Generating Monthly");
+	var ref = firebase.database().ref('users/' + window.uid + '/punchTemplates/monthly');
+	ref.once('value', function(snapshot) {
+		snapshot.forEach(function(childSnapshot) {
+			var data = childSnapshot.val();
+			console.log(data);
+			var subject = data.subject,
+					priority = data.priority,
+					progress = "new",
+					needByDate = data.needByDate,
+					notes = data.notes,
+					tags = data.tags,
+					t = needByDate.split(':'),
+					d = new Date();
+			d.setDate(parseInt(needByDate.split(',')[0]));
+			d.setHours(parseInt(needByDate.split(',')[1].split(':')[0]));
+			d.setMinutes(parseInt(needByDate.split(':')[1]));
+			d.setSeconds(0);
+
+			var needBy = d;
+
+			console.log("subject: " + subject);
+			console.log("priority: " + priority);
+			console.log("progress: " + progress);
+			console.log("needby: " + needBy);
+			console.log("notes: " + notes);
+			console.log("tags: " + tags);
+
+			newPunch(window.uid, subject, priority, progress, needBy, notes, tags);
+		});
+	});
+}
 // Set styles
 function setStyle(reference, progress) {
 	var refClass,
