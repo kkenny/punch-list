@@ -1,4 +1,4 @@
-var version = "2019.08.08-1408-alpha";
+var version = "2019.08.15-1244-alpha";
 
 // stats declaration...
 var cNew = 0;
@@ -39,7 +39,6 @@ function listener(uid) {
 		countStats();
 	});
 
-	mkSortable();
 //	sortList();
 //}
 
@@ -60,5 +59,6 @@ function listener(uid) {
 	});
 //}, 1000);
 	watchFunctions();
+	mkSortable();
 }
 

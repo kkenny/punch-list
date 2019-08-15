@@ -20,6 +20,7 @@ function updateElementData(element, d) {
 }
 
 function updatePunchElement(childKey, childData) {
+	console.log('updating punch element: ' + childKey);
 
 	setStyle(childKey, childData.progress);
 
@@ -30,10 +31,10 @@ function updatePunchElement(childKey, childData) {
 		updateElementData("progress" + childKey, childData.progress);
 		updateElementData("neededby-data" + childKey, childData.needByDate);
 
-		$( '#' + childKey).addClass( 'newPunchLoad' );
+		$( '#' + childKey).addClass( 'updatedPunch' );
 		setTimeout(function(){
-			$( '#' + childKey).removeClass( 'newPunchLoad' );
-		}, 3000);
+			$( '#' + childKey).removeClass( 'updatedPunch' );
+		}, 5000);
 	}
 }
 

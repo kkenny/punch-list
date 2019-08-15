@@ -131,6 +131,7 @@ function genWeekly() {
 					tags = data.tags,
 					t = needByDate.split(':'),
 					d = new Date();
+
 			d.setDate(d.getDate() + (parseInt(needByDate.split(',')[0]) + 7 - d.getDay()) % 7);
 			d.setHours(parseInt(needByDate.split(',')[1].split(':')[0]));
 			d.setMinutes(parseInt(needByDate.split(':')[1]));
@@ -165,6 +166,7 @@ function genMonthly() {
 					tags = data.tags,
 					t = needByDate.split(':'),
 					d = new Date();
+
 			d.setDate(parseInt(needByDate.split(',')[0]));
 			d.setHours(parseInt(needByDate.split(',')[1].split(':')[0]));
 			d.setMinutes(parseInt(needByDate.split(':')[1]));

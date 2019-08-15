@@ -59,8 +59,8 @@ function setPunchProgress(reference, p) {
 			endTime = {};
 			endTime['users/' + window.uid + '/punches/' + reference + '/endTime'] = end;
 
-			priority = 99999;
-			setPriority(reference, priority);
+//			priority = 99999;
+//			setPriority(reference, priority);
 
 			firebase.database().ref().update(endTime);
 			positionLoop();

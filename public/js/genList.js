@@ -4,6 +4,8 @@ function genPunchListItem(elementData, element) {
 }
 
 function addPunchElement(childKey, childData) {
+	console.log('creating punch element: ' + childKey);
+
 	var style,
 			time,
 			tags,
@@ -62,7 +64,8 @@ function addPunchElement(childKey, childData) {
 
 		setTimeout(function(){
 			$('#' + childKey).removeClass('newPunchLoad');
-		}, 5000);
+			$('#' + childKey).addClass('i-am-a-punch');
+		}, 8200);
 
 	}
 
