@@ -109,6 +109,7 @@ function genDaily() {
 	var ref = firebase.database().ref('users/' + window.uid + '/punchTemplates/daily');
 	ref.once('value', function(snapshot) {
 		snapshot.forEach(function(childSnapshot) {
+			var doesPunchExist = '';
 			var data = childSnapshot.val();
 			console.log(data);
 			var subject = data.subject,
@@ -125,10 +126,10 @@ function genDaily() {
 
 			var needBy = d;
 
-			punchExists = doesExist(subject);
-			console.log(subject + "exists? " + punchExists);
+			doesPunchExist = doesExist(subject);
+			console.log(subject + "exists? " + doesPunchExist);
 
-			if ( punchExists === false  ) {
+			if ( doesPunchExist === false  ) {
 				newPunch(window.uid, subject, priority, progress, needBy, notes, tags);
 			} else {
 				console.log("Punch Already Exists: " + subject);
