@@ -84,23 +84,20 @@ function autoPunch() {
 }
 
 function doesExist(subject) {
-	var list = $('#sortable');
-	var li = list.children('li');
-
-	li.forEach(function( i, l ) {
-		var c_id = $(l).attr('id');
-		firebase.database().ref('users/' + window.uid + '/punches/' + c_id).once('value').then(function(snapshot) {
+	var exists = false;
+	$( "li" ).each(function( i, l ) {
+		var punchRef = firebase.database().ref('users/' + window.uid + '/punches/' + l.id).once('value').then(function(snapshot) {
 			var data = snapshot.val();
 			var c_subject = data.subject;
 
 			if ( subject === c_subject ) {
-				return true;
+				exists = true;
 			}
 
 		});
 	});
 
-	return false;
+	return exists;
 
 }
 
