@@ -90,9 +90,12 @@ function doesExist(subject) {
 			var data = snapshot.val();
 			var c_subject = data.subject;
 
+			console.log('checking if ' + subject + ' matches ' + c_subject);
+
 			if ( subject === c_subject ) {
 				exists = true;
 			}
+			console.log(exists);
 
 		});
 	});
