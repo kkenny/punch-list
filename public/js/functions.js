@@ -83,6 +83,27 @@ function autoPunch() {
 
 }
 
+function doesExist(subject) {
+	var list = $('#sortable');
+	var li = list.children('li');
+
+	li.forEach(function( i, l ) {
+		var c_id = $(l).attr('id');
+		firebase.database().ref('users/' + window.uid + '/punches/' + c_id).once('value').then(function(snapshot) {
+			var data = snapshot.val();
+			var c_subject = data.subject;
+
+			if ( subject === c_subject ) {
+				return true;
+			}
+
+		});
+	});
+
+	return false;
+
+}
+
 function genDaily() {
 	console.log("Generating Daily");
 	var ref = firebase.database().ref('users/' + window.uid + '/punchTemplates/daily');
@@ -104,14 +125,12 @@ function genDaily() {
 
 			var needBy = d;
 
-			console.log("subject: " + subject);
-			console.log("priority: " + priority);
-			console.log("progress: " + progress);
-			console.log("needby: " + needBy);
-			console.log("notes: " + notes);
-			console.log("tags: " + tags);
+			if ( doesExist(subject) === false  ) {
+				newPunch(window.uid, subject, priority, progress, needBy, notes, tags);
+			} else {
+				console.log("Punch Already Exists: " + subject);
+			}
 
-			newPunch(window.uid, subject, priority, progress, needBy, notes, tags);
 		});
 	});
 }
