@@ -20,7 +20,7 @@ function updateElementData(element, d) {
 }
 
 function updatePunchElement(childKey, childData) {
-	console.log('updating punch element: ' + childKey);
+	// console.log('updating punch element: ' + childKey);
 
 	setStyle(childKey, childData.progress);
 

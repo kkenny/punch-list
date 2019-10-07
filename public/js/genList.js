@@ -4,7 +4,7 @@ function genPunchListItem(elementData, element) {
 }
 
 function addPunchElement(childKey, childData) {
-	console.log('creating punch element: ' + childKey);
+	//console.log('creating punch element: ' + childKey);
 
 	var style,
 			time,

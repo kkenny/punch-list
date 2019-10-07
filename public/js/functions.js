@@ -122,7 +122,10 @@ function genDaily() {
 
 			var needBy = d;
 
-			if ( doesExist(subject) === false  ) {
+			punchExists = doesExist(subject);
+			console.log(subject + "exists? " + punchExists);
+
+			if ( punchExists === false  ) {
 				newPunch(window.uid, subject, priority, progress, needBy, notes, tags);
 			} else {
 				console.log("Punch Already Exists: " + subject);

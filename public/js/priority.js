@@ -7,7 +7,7 @@ function positionLoop() {
 			var nPriority = i;
 
 			if ( parseInt(cPriority) < 100 && parseInt(cPriority) != parseInt(nPriority) ) {
-				console.log("Updating: " + l.id + " priority, from: " + cPriority + ", to: " + nPriority);
+				// console.log("Updating: " + l.id + " priority, from: " + cPriority + ", to: " + nPriority);
 				setPriority(l.id, nPriority);
 			}
 		});
