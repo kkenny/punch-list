@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-<!--		<meta name="google-signin-client_id" content="999467953896-tcsf2i6f8rmvb9o8mpsprv43rfr9k8bq.apps.googleusercontent.com"> -->
-		<meta name="google-signin-client_id" content="999467953896-mrvotds9kf6fv0f9gnf4jdtvabf2s805.apps.googleusercontent.com">
+<!--		<meta id="google-signin-client_id" content="999467953896-tcsf2i6f8rmvb9o8mpsprv43rfr9k8bq.apps.googleusercontent.com"> -->
+		<meta id="google-signin-client_id" content="999467953896-mrvotds9kf6fv0f9gnf4jdtvabf2s805.apps.googleusercontent.com">
 
-		<meta name="google-signin-cookiepolicy" content="single_host_origin">
-		<meta name="google-signin-scope" content="profile email">
+		<meta id="google-signin-cookiepolicy" content="single_host_origin">
+		<meta id="google-signin-scope" content="profile email">
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta id="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Punch List</title>
 
@@ -60,19 +60,19 @@
 		<!-- END Do not delete this -->
 
 		<form>
-			<div>Home Team: <input type="text" name="homeTeam"></div>
-			<div>Away Team: <input type="text" name="awayTeam"></div>
+			<div>Home Team: <input type="text" id="homeTeam"></div>
+			<div>Away Team: <input type="text" id="awayTeam"></div>
 
-			<div>We are: <select name="homeOrAway">
+			<div>We are: <select id="homeOrAway">
 											<option value="Home">Home</option>
 											<option value="Away">Away</option>
 										</select>
 			</div>
 
-			<div>Location: <input type="text" name="gameLocation"></div>
+			<div>Location: <input type="text" id="gameLocation"></div>
 
-			<div>Date: <input type="text" name="gameDate"></div>
-			<div>Time: <input type="text" name="gameTime"></div>
+			<div>Date: <input type="text" id="gameDate"></div>
+			<div>Time: <input type="text" id="gameTime"></div>
 			<button type="button" onClick="getGameData()">Submit</button>
 		</form>
 
