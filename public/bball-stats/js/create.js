@@ -10,6 +10,7 @@ function newGame(teamHome, teamGuest, homeOrAway, gameDate, gameLocation, gameTi
 }
 
 function getGameData() {
+	console.log("getting game data");
 	var homeTeam = document.getEementById("homeTeam").value;
 	var awayTeam = document.getEementById("awayTeam").value;
 	var homeOrAway = document.getEementById("homeOrAway").value;
