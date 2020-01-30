@@ -7,11 +7,11 @@
         ".read": "$uid === auth.uid",
         ".write": "$uid === auth.uid"
       }
-    }
-  },
-	"bball-stats": {
-		".read": true,
-		".write": "auth.uid === ZNzrvgTMxZePzhOaczZLfrwVUy93"
-	}
+    },
+		"bball-stats": {
+			".read": true,
+			".write": "auth.uid === ZNzrvgTMxZePzhOaczZLfrwVUy93"
+		}
+  }
 }
 
