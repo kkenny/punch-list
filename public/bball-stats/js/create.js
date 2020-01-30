@@ -6,6 +6,7 @@ function newGame(teamHome, teamGuest, homeOrAway, gameDate, gameLocation, gameTi
 	updates['bball-stats/games/' + newGameKey] = { teamHome: teamHome, teamGuest: teamGuest, homeOrAway: homeOrAway, gameDate: gameDate, gameTime: gameTime, gameLocation: gameLocation };
 
 	return firebase.database().ref().update(updates);
+
 }
 
 function getGameData() {
@@ -19,5 +20,6 @@ function getGameData() {
 	// TODO: Need to add error checking
 
 	newGame(homeTeam, awayTeam, homeOrAway, gameDate, gameLocation, gameTime);
+	window.location.href = '/';
 }
 
