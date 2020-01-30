@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!--		<meta name="google-signin-client_id" content="999467953896-tcsf2i6f8rmvb9o8mpsprv43rfr9k8bq.apps.googleusercontent.com"> -->
+		<meta name="google-signin-client_id" content="999467953896-mrvotds9kf6fv0f9gnf4jdtvabf2s805.apps.googleusercontent.com">
+
+		<meta name="google-signin-cookiepolicy" content="single_host_origin">
+		<meta name="google-signin-scope" content="profile email">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Punch List</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/datepicker.min.css">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.css" />
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/skeleton.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="css/magic.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/custom-medium.css">
+		<link rel="stylesheet" href="css/custom-large.css">
+		<link rel="stylesheet" href="css/menu.css">
+		<link rel="stylesheet" href="css/punch-details.css">
+		<link rel="stylesheet" href="css/form-overlay.css">
+		<!-- scripts -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+		<script src="/__/firebase/6.2.4/firebase-app.js"></script>
+		<script src="/__/firebase/6.2.4/firebase-auth.js"></script>
+		<script src="/__/firebase/6.2.4/firebase-database.js"></script>
+		<script src="/__/firebase/6.2.4/firebase-messaging.js"></script>
+		<script src="/__/firebase/6.2.4/firebase-storage.js"></script>
+		<script src="/__/firebase/init.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script src="js/gSignIn.js"></script>
+		<script src="js/functions.js"></script>
+		<script src="js/create.js"></script>
+		<script src="js/editPunch.js"></script>
+		<script src="js/genList.js"></script>
+		<script src="js/menus.js"></script>
+		<script src="js/priority.js"></script>
+		<script src="js/progress.js"></script>
+		<script src="js/tags.js"></script>
+		<script src="js/updates.js"></script>
+		<script src="js/myFirebase.js"></script>
+		<script src="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.js"></script>
+		<script src="js/datepicker.min.js"></script>
+		<script src="js/i18n/datepicker.en.js"></script>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
+	</head>
+
+
+	<body>
+		<div id="firebaseui-auth-container"></div>
+		<div id="header" class="header">
+			<span><a href="create_game.html">Create Game</a></span>
+		</div>
+
+		<!--body-->
+
+
+
+		<!-- User Info -->
+			<div id=middle class="column-middle">
+				<div id="whoami"></div>
+				<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+			</div>
+
+			<div id=right class="column-right" style="float:left">
+				<div class="twelve columns events">
+					<div id="events-list"></div>
+				</div>
+			</div>
+		</div>
+
+  </body>
+</html>
