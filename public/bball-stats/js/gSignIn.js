@@ -32,12 +32,6 @@ function initApp() {
       var providerData = user.providerData;
 //			writeUserData(uid, displayName, email, photoURL);
 			//newPunch(uid);
-			if (window.showDone === true) {
-				listenerDone(uid);
-			} else {
-				listener(uid);
-				autoPunch();
-			}
 			document.getElementById('whoami').innerHTML = email;
       // [START_EXCLUDE]
       //document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
@@ -140,11 +134,3 @@ function handleSignOut() {
   });
 }
 
-function writeUserData(userId, name, email, imageUrl) {
-	conLog("function: writeUserData(" + userId + ", " + name + ", " + email + ", " + imageUrl + ")");
-  firebase.database().ref('users/' + userId).update({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
-  });
-}
