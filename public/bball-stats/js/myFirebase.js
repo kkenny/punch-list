@@ -3,7 +3,7 @@ var version = "2020.01.30-1328-alpha";
 // load everything up!
 window.onload = function() {
   initApp();
-	document.getElementById("versionInfo").innerHTML = version;
+	//document.getElementById("versionInfo").innerHTML = version;
 };
 
 function listener() {

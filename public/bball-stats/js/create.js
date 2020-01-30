@@ -11,12 +11,12 @@ function newGame(teamHome, teamGuest, homeOrAway, gameDate, gameLocation, gameTi
 
 function getGameData() {
 	console.log("getting game data");
-	var homeTeam = document.getEementById("homeTeam").value;
-	var awayTeam = document.getEementById("awayTeam").value;
-	var homeOrAway = document.getEementById("homeOrAway").value;
-	var gameLocation = document.getEementById("gameLocation").value;
-	var gameDate = document.getEementById("gameDate").value;
-	var gameTime = document.getEementById("gameTime").value;
+	var homeTeam = document.getElementById("homeTeam").value;
+	var awayTeam = document.getElementById("awayTeam").value;
+	var homeOrAway = document.getElementById("homeOrAway").value;
+	var gameLocation = document.getElementById("gameLocation").value;
+	var gameDate = document.getElementById("gameDate").value;
+	var gameTime = document.getElementById("gameTime").value;
 
 	// TODO: Need to add error checking
 
