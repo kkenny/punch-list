@@ -10,7 +10,7 @@
     },
 		"bball-stats": {
 			".read": true,
-			".write": "auth.uid === ZNzrvgTMxZePzhOaczZLfrwVUy93"
+			".write": "auth.uid === 'ZNzrvgTMxZePzhOaczZLfrwVUy93'"
 		}
   }
 }
