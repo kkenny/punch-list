@@ -36,7 +36,7 @@ function initApp() {
 				listenerDone(uid);
 			} else {
 				listener(uid);
-				autoPunch();
+				//autoPunch();
 			}
 			document.getElementById('whoami').innerHTML = email;
       // [START_EXCLUDE]
